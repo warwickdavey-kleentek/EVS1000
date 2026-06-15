@@ -302,21 +302,6 @@ figure img{cursor:zoom-in}
   font-size:13px;padding:0 24px;pointer-events:none}
 @media print{.lightbox{display:none !important}}
 
-/* ---------- Edit mode ---------- */
-.edit-bar{position:fixed;right:18px;bottom:18px;z-index:120;display:flex;gap:8px;align-items:center}
-.edit-bar button{font-family:'Archivo';font-weight:700;font-size:13px;letter-spacing:.01em;
-  border:none;border-radius:100px;padding:11px 18px;cursor:pointer;box-shadow:var(--shadow-lg)}
-.edit-bar .eb-edit{background:var(--blue-deep);color:#fff}
-.edit-bar .eb-save{background:var(--amber);color:#1a1205;display:none}
-.edit-bar .eb-cancel{background:#fff;color:var(--steel);display:none}
-.edit-bar .eb-hint{display:none;background:rgba(7,53,103,.92);color:#dce9f7;font-size:12px;
-  padding:8px 13px;border-radius:8px;max-width:230px;line-height:1.45}
-body.editing .edit-bar .eb-save,body.editing .edit-bar .eb-cancel,body.editing .edit-bar .eb-hint{display:inline-block}
-body.editing .edit-bar .eb-edit{display:none}
-body.editing [contenteditable="true"]:hover{outline:2px dashed #9ec4ee;outline-offset:3px;border-radius:4px}
-body.editing [contenteditable="true"]:focus{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
-@media print{.edit-bar{display:none !important}}
-
 /* ---------- Download button ---------- */
 .dl-btn{display:inline-flex;align-items:center;gap:9px;margin-top:28px;background:#fff;color:var(--blue-deep);
   font-family:'Archivo';font-weight:700;font-size:14.5px;letter-spacing:.01em;padding:12px 22px;
@@ -1114,14 +1099,6 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
   <div class="lb-cap"></div>
 </div>
 
-<!-- Edit toolbar (lets you edit text in the page and download the updated HTML) -->
-<div class="edit-bar no-print">
-  <span class="eb-hint">Click any text to edit it. When done, press <b>Save</b> to download the updated <b>index.html</b>.</span>
-  <button class="eb-cancel" type="button">Cancel</button>
-  <button class="eb-save" type="button">Save &amp; download</button>
-  <button class="eb-edit" type="button">✎ Edit page</button>
-</div>
-
 <script>
 // Active-link highlighting in the sidebar
 (function(){
@@ -1144,7 +1121,6 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
   var lb=document.getElementById('lightbox');
   var lbImg=lb.querySelector('img'), lbCap=lb.querySelector('.lb-cap');
   function open(img){
-    if(document.body.classList.contains('editing')) return; // don't zoom while editing
     lbImg.src=img.currentSrc||img.src; lbImg.alt=img.alt||'';
     var fig=img.closest('figure'); var cap=fig?fig.querySelector('figcaption'):null;
     lbCap.textContent=cap?cap.textContent.trim():(img.alt||'');
@@ -1156,42 +1132,6 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
   });
   lb.addEventListener('click',close);              // click anywhere (backdrop or image) closes
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-})();
-
-// Edit mode — make body text editable, then download the updated HTML file
-(function(){
-  var bar=document.querySelector('.edit-bar');
-  if(!bar) return;
-  var btnEdit=bar.querySelector('.eb-edit'), btnSave=bar.querySelector('.eb-save'), btnCancel=bar.querySelector('.eb-cancel');
-  // Elements safe to edit: text blocks and table cells in the main content (not nav/footer chrome).
-  var sel='.main h2, .main h3, .main h4, .main p, .main li, .main td, .main caption, .main figcaption, .main .lede, .main .chip, .main .tc-t, .main .tc-d, .main .s-name, .main .stage p, .main .note';
-  function setEditable(on){
-    document.querySelectorAll(sel).forEach(function(el){
-      if(on){ el.setAttribute('contenteditable','true'); }
-      else { el.removeAttribute('contenteditable'); }
-    });
-  }
-  btnEdit.addEventListener('click',function(){
-    document.body.classList.add('editing'); setEditable(true);
-    window.scrollTo({top:0,behavior:'smooth'});
-  });
-  btnCancel.addEventListener('click',function(){
-    if(confirm('Discard your changes? The page will reload.')) location.reload();
-  });
-  btnSave.addEventListener('click',function(){
-    document.body.classList.remove('editing'); setEditable(false);
-    // Serialise the current document, minus the runtime-only edit state.
-    var clone=document.documentElement.cloneNode(true);
-    clone.querySelectorAll('[contenteditable]').forEach(function(el){el.removeAttribute('contenteditable');});
-    var lbc=clone.querySelector('#lightbox'); if(lbc){lbc.classList.remove('open'); var li=lbc.querySelector('img'); if(li) li.setAttribute('src','');}
-    var html='<!DOCTYPE html>\n'+clone.outerHTML;
-    var blob=new Blob([html],{type:'text/html'});
-    var a=document.createElement('a');
-    a.href=URL.createObjectURL(blob); a.download='index.html';
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
-    alert('Saved. Your browser has downloaded the updated index.html — replace the file in the manual folder with it.');
-  });
 })();
 </script>
 </body>
