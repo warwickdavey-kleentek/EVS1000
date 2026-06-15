@@ -648,7 +648,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
         <p>Select <strong>Fill Bath</strong> and press <strong>Fill</strong> to activate fill mode. <strong>Stay on this screen</strong> while filling — leaving it deactivates fill mode. Open the ball valve to fill, check the bath, and close the valve once the correct level is reached.</p>
 
         <h3>Change Filter &amp; Reset Counter</h3>
-        <p>Press <strong>Filter Change</strong> to enter filter-change mode (stay on the screen, or the mode stops). The screen shows the running filter counter; the Supervisor can set the filter-change cycle target (<strong>1 – 999999</strong>) and press <strong>Reset</strong> to zero the counter after fitting new cartridges.</p>
+        <p>Press <strong>Filter Change</strong> to enter filter-change mode (stay on the screen, or the mode stops). The screen shows the running filter counter; the Supervisor can set the filter-change cycle target (<strong>1 – 999999</strong>) and press <strong>Reset</strong> to zero the counter after fitting new bags. See <strong>Section&nbsp;9</strong> for the physical bag-change procedure.</p>
 
         <h3>Drain Bath &amp; Reset Counter</h3>
         <p>Press <strong>Drain</strong> to activate drain mode (stay on the screen, or it deactivates). A 60-second timer starts; shutdown mode follows once it elapses. The Supervisor can set the drain counter target (<strong>1 – 999999</strong>) and reset it.</p>
@@ -916,7 +916,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
             <tr><td>Process-tank liquid level low — heating disabled</td><td>Raised if the tank level falls below the level switch (heating is disabled). Refill the tank to the level switch to re-enable heating; if it persists, check the level-switch wiring.</td></tr>
             <tr><td>Weir-tank liquid level low</td><td>Raised if the weir-tank level falls below the level switch. Refill to the level switch; if it persists, check the level-switch wiring.</td></tr>
             <tr><td>Ultrasonic X healthy signal faulty (X = 1–10)</td><td>Raised if a generator's healthy signal is off. Check whether that ultrasonic generator is on; if it is and the fault persists, check the healthy-signal wiring.</td></tr>
-            <tr><td>Filter-change counter exceeded</td><td>Raised when the filter-change counter exceeds its set value. Press fault-reset to clear for one cycle; reset the counter on the maintenance screen to clear fully. Check / change the process-tank filter.</td></tr>
+            <tr><td>Filter-change counter exceeded</td><td>Raised when the filter-change counter exceeds its set value. Press fault-reset to clear for one cycle; reset the counter on the maintenance screen to clear fully. Check / change the filter bags (Section&nbsp;9).</td></tr>
             <tr><td>Drain counter exceeded</td><td>Raised when the drain counter exceeds its set value. Press fault-reset to clear for one cycle; reset the counter on the maintenance screen to clear fully.</td></tr>
             <tr><td>Lid not closed</td><td>Raised if the process is running and the tank lid is not closed. Close the lid manually; if it is closed, check the lid-close sensor position and wiring.</td></tr>
             <tr><td>Lid not opening / not closing</td><td>Raised if the lid does not open / close within a fixed time. Check the lid motor, sensors and MPCB; if it persists, check the lid-motor wiring.</td></tr>
@@ -940,6 +940,23 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
           <li>Make sure the generator cooling is always guaranteed — keep the cooling slots clear so air can circulate freely, and do not let warm air accumulate around the unit.</li>
           <li>Avoid scratches in the radiating (resonator) surface — scratches increase erosion due to cavitation.</li>
         </ul>
+
+        <h3>Changing the Filter Bags</h3>
+        <p>The solution is filtered through two stainless bag-filter housings — a coarse <strong>50&nbsp;micron</strong> bag followed by a fine <strong>25&nbsp;micron</strong> bag. The bags are consumable items and must be replaced when they load up with soil. The on-screen <strong>Change Filter</strong> function and its counter (Section&nbsp;4) help you track and carry out the change.</p>
+        <div class="note warn"><span class="t">When to change the bags</span>Replace the bags when the filter-housing pressure gauge climbs into its upper (red) zone, when the <strong>Filter-Change Counter Exceeded</strong> alarm appears, or when bath clarity and flow fall away. Clogged bags starve the circulation pump and let particulate recirculate onto cleaned parts.</div>
+        <div class="note danger"><span class="t">Before opening a housing</span>The solution may be hot and chemically active. Wear suitable gloves and eye protection, and where practical let the bath cool first. Isolate the machine before any electrical work, and never let solution reach the control or electrical components.</div>
+        <ol class="flow">
+          <li>On the HMI, open <b>Maintenance → Change Filter &amp; Reset Counter</b> and press <b>Filter Change</b> to enter filter-change mode — this stops the filtration pump. Stay on this screen for the duration of the change.</li>
+          <li>Close the inlet and outlet ball valves isolating the filter housings, then slowly relieve the pressure and drain each housing back to the tank.</li>
+          <li>Undo the housing lid (clamp / swing bolts), lift out the bag-restrainer basket and remove the used bag, letting it drain into the housing.</li>
+          <li>Clean the inside of the housing and the sealing face. Inspect the <b>Viton gasket / seal</b> and replace it if it is damaged or perished.</li>
+          <li>Fit a new bag of the correct rating in each housing — <b>coarse 50&nbsp;micron</b> and <b>fine 25&nbsp;micron</b> — seating it fully over the housing neck so that unfiltered solution cannot bypass it. Refit the restrainer basket.</li>
+          <li>Close the lid evenly with the seal correctly located, then reopen the inlet and outlet ball valves.</li>
+          <li>Exit filter-change mode and restart filtration. Check the housings and connections for leaks and confirm the pressure gauge returns to its normal (green) zone.</li>
+          <li>Press <b>Reset</b> on the Change Filter screen to zero the filter-change counter.</li>
+          <li>Dispose of the used bags in accordance with your site's waste procedures — they hold oils and contaminants removed from the parts.</li>
+        </ol>
+        <div class="note warn"><span class="t">Never run without a sound bag</span>Do not run the system with a missing, torn or incorrectly seated bag — unfiltered solution will bypass the filter and redeposit soil on cleaned parts.</div>
 
         <h3>Service</h3>
         <p>If the unit no longer functions properly, first check the plug and operating elements. <strong>Do not open the housing.</strong> Repairs may only be carried out by suitably trained staff — inexpert intervention can result in considerable danger to users and to the equipment.</p>
