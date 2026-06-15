@@ -264,6 +264,36 @@ footer a{color:#7fb0e6}
 .gallery h4{grid-column:1/-1;margin:18px 0 0}
 @media(max-width:680px){.gallery{grid-template-columns:1fr}}
 
+/* ---------- Lightbox (click screenshot for full view) ---------- */
+figure img{cursor:zoom-in}
+.lightbox{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
+  background:rgba(6,18,33,.93);padding:28px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96vw;max-height:90vh;width:auto;height:auto;border-radius:8px;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);background:#000;cursor:default}
+.lightbox .lb-close{position:absolute;top:16px;right:24px;width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:24px;
+  line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox .lb-close:hover{background:rgba(255,255,255,.22)}
+.lightbox .lb-cap{position:absolute;left:0;right:0;bottom:18px;text-align:center;color:#cfe0f2;
+  font-size:13px;padding:0 24px;pointer-events:none}
+@media print{.lightbox{display:none !important}}
+
+/* ---------- Edit mode ---------- */
+.edit-bar{position:fixed;right:18px;bottom:18px;z-index:120;display:flex;gap:8px;align-items:center}
+.edit-bar button{font-family:'Archivo';font-weight:700;font-size:13px;letter-spacing:.01em;
+  border:none;border-radius:100px;padding:11px 18px;cursor:pointer;box-shadow:var(--shadow-lg)}
+.edit-bar .eb-edit{background:var(--blue-deep);color:#fff}
+.edit-bar .eb-save{background:var(--amber);color:#1a1205;display:none}
+.edit-bar .eb-cancel{background:#fff;color:var(--steel);display:none}
+.edit-bar .eb-hint{display:none;background:rgba(7,53,103,.92);color:#dce9f7;font-size:12px;
+  padding:8px 13px;border-radius:8px;max-width:230px;line-height:1.45}
+body.editing .edit-bar .eb-save,body.editing .edit-bar .eb-cancel,body.editing .edit-bar .eb-hint{display:inline-block}
+body.editing .edit-bar .eb-edit{display:none}
+body.editing [contenteditable="true"]:hover{outline:2px dashed #9ec4ee;outline-offset:3px;border-radius:4px}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+@media print{.edit-bar{display:none !important}}
+
 /* ---------- Download button ---------- */
 .dl-btn{display:inline-flex;align-items:center;gap:9px;margin-top:28px;background:#fff;color:var(--blue-deep);
   font-family:'Archivo';font-weight:700;font-size:14.5px;letter-spacing:.01em;padding:12px 22px;
@@ -925,6 +955,21 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
   </main>
 </div>
 
+<!-- Lightbox for full-view screenshots -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" type="button" aria-label="Close">×</button>
+  <img src="" alt="">
+  <div class="lb-cap"></div>
+</div>
+
+<!-- Edit toolbar (lets you edit text in the page and download the updated HTML) -->
+<div class="edit-bar no-print">
+  <span class="eb-hint">Click any text to edit it. When done, press <b>Save</b> to download the updated <b>index.html</b>.</span>
+  <button class="eb-cancel" type="button">Cancel</button>
+  <button class="eb-save" type="button">Save &amp; download</button>
+  <button class="eb-edit" type="button">✎ Edit page</button>
+</div>
+
 <script>
 // Active-link highlighting in the sidebar
 (function(){
@@ -940,6 +985,61 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
     });
   },{rootMargin:'-10% 0px -80% 0px'});
   Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+})();
+
+// Lightbox — click any screenshot for a full-size view
+(function(){
+  var lb=document.getElementById('lightbox');
+  var lbImg=lb.querySelector('img'), lbCap=lb.querySelector('.lb-cap');
+  function open(img){
+    if(document.body.classList.contains('editing')) return; // don't zoom while editing
+    lbImg.src=img.currentSrc||img.src; lbImg.alt=img.alt||'';
+    var fig=img.closest('figure'); var cap=fig?fig.querySelector('figcaption'):null;
+    lbCap.textContent=cap?cap.textContent.trim():(img.alt||'');
+    lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+  }
+  function close(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; }
+  document.querySelectorAll('figure img').forEach(function(img){
+    img.addEventListener('click',function(){ open(img); });
+  });
+  lb.addEventListener('click',close);              // click anywhere (backdrop or image) closes
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+
+// Edit mode — make body text editable, then download the updated HTML file
+(function(){
+  var bar=document.querySelector('.edit-bar');
+  if(!bar) return;
+  var btnEdit=bar.querySelector('.eb-edit'), btnSave=bar.querySelector('.eb-save'), btnCancel=bar.querySelector('.eb-cancel');
+  // Elements safe to edit: text blocks and table cells in the main content (not nav/footer chrome).
+  var sel='.main h2, .main h3, .main h4, .main p, .main li, .main td, .main caption, .main figcaption, .main .lede, .main .chip, .main .tc-t, .main .tc-d, .main .s-name, .main .stage p, .main .note';
+  function setEditable(on){
+    document.querySelectorAll(sel).forEach(function(el){
+      if(on){ el.setAttribute('contenteditable','true'); }
+      else { el.removeAttribute('contenteditable'); }
+    });
+  }
+  btnEdit.addEventListener('click',function(){
+    document.body.classList.add('editing'); setEditable(true);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  btnCancel.addEventListener('click',function(){
+    if(confirm('Discard your changes? The page will reload.')) location.reload();
+  });
+  btnSave.addEventListener('click',function(){
+    document.body.classList.remove('editing'); setEditable(false);
+    // Serialise the current document, minus the runtime-only edit state.
+    var clone=document.documentElement.cloneNode(true);
+    clone.querySelectorAll('[contenteditable]').forEach(function(el){el.removeAttribute('contenteditable');});
+    var lbc=clone.querySelector('#lightbox'); if(lbc){lbc.classList.remove('open'); var li=lbc.querySelector('img'); if(li) li.setAttribute('src','');}
+    var html='<!DOCTYPE html>\n'+clone.outerHTML;
+    var blob=new Blob([html],{type:'text/html'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+    alert('Saved. Your browser has downloaded the updated index.html — replace the file in the manual folder with it.');
+  });
 })();
 </script>
 </body>
