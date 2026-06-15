@@ -275,6 +275,12 @@ figure.flowdiagram svg{width:100%;height:auto;display:block}
 .fd-box{fill:#fff;stroke:var(--line);stroke-width:1.5}
 .fd-box.run{fill:#eef5fd;stroke:#cfe1f6}
 .fd-arrow{stroke:var(--steel);stroke-width:2;fill:none}
+.fd-gate{fill:#f1f7fd;stroke:#cfe1f6;stroke-width:1.5}
+.fd-gate-title{font-family:'Archivo',sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.05em;fill:var(--blue-deep);text-transform:uppercase}
+.fd-cond{fill:#fff;stroke:#d3dde7;stroke-width:1.2}
+.fd-cond-txt{font-family:'Spline Sans',sans-serif;font-weight:600;font-size:11.5px;fill:var(--blue-deep)}
+.fd-tick{font-family:'Archivo',sans-serif;font-weight:800;font-size:10px;fill:#fff}
+.fd-arrow-lbl{font-family:'Spline Sans',sans-serif;font-weight:600;font-size:11.5px;fill:var(--green)}
 @media print{figure.flowdiagram{break-inside:avoid}}
 
 /* ---------- Lightbox (click screenshot for full view) ---------- */
@@ -728,7 +734,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
         <h2>Running a Cleaning Cycle</h2>
         <p>The full sequence — from preparing the bath through to unloading clean parts — is summarised below. The operator handles the green and blue steps; the controller runs the cleaning cycle itself automatically.</p>
         <figure class="flowdiagram">
-          <svg viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flow diagram: setting up and running a cleaning cycle">
+          <svg viewBox="0 0 880 634" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flow diagram: setting up and running a cleaning cycle, with start-condition checks">
             <defs>
               <marker id="fd-ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
                 <path d="M0,0 L9,4.5 L0,9 z" fill="#5b6b7c"/>
@@ -736,82 +742,106 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
             </defs>
 
             <!-- ===== PHASE 1 — PREPARE ===== -->
-            <rect class="fd-hdr-bar" x="30" y="16" width="820" height="32" rx="8" fill="#e8881a"/>
-            <circle cx="50" cy="32" r="11" fill="rgba(255,255,255,.25)"/>
-            <text class="fd-badge" x="50" y="36.5" text-anchor="middle">1</text>
-            <text class="fd-hdr" x="72" y="37">Prepare the bath</text>
+            <rect class="fd-hdr-bar" x="30" y="14" width="820" height="32" rx="8" fill="#e8881a"/>
+            <circle cx="50" cy="30" r="11" fill="rgba(255,255,255,.25)"/>
+            <text class="fd-badge" x="50" y="34.5" text-anchor="middle">1</text>
+            <text class="fd-hdr" x="72" y="35">Prepare the bath</text>
 
-            <rect class="fd-box" x="50"  y="60" width="240" height="60" rx="10"/>
-            <text class="fd-step" x="170" y="86"  text-anchor="middle">Fill &amp; dose the bath</text>
-            <text class="fd-sub"  x="170" y="104" text-anchor="middle">water + detergent</text>
-            <rect class="fd-box" x="320" y="60" width="240" height="60" rx="10"/>
-            <text class="fd-step" x="440" y="86"  text-anchor="middle">Set temperature</text>
-            <text class="fd-sub"  x="440" y="104" text-anchor="middle">on the HMI</text>
-            <rect class="fd-box" x="590" y="60" width="240" height="60" rx="10"/>
-            <text class="fd-step" x="710" y="86"  text-anchor="middle">Degas — no load</text>
-            <text class="fd-sub"  x="710" y="104" text-anchor="middle">until cavitation is even</text>
-            <line class="fd-arrow" x1="290" y1="90" x2="318" y2="90" marker-end="url(#fd-ah)"/>
-            <line class="fd-arrow" x1="560" y1="90" x2="588" y2="90" marker-end="url(#fd-ah)"/>
-            <line class="fd-arrow" x1="440" y1="122" x2="440" y2="140" marker-end="url(#fd-ah)"/>
+            <rect class="fd-box" x="50"  y="58" width="240" height="60" rx="10"/>
+            <text class="fd-step" x="170" y="84"  text-anchor="middle">Fill &amp; dose the bath</text>
+            <text class="fd-sub"  x="170" y="102" text-anchor="middle">water + detergent</text>
+            <rect class="fd-box" x="320" y="58" width="240" height="60" rx="10"/>
+            <text class="fd-step" x="440" y="84"  text-anchor="middle">Set temperature</text>
+            <text class="fd-sub"  x="440" y="102" text-anchor="middle">on the HMI</text>
+            <rect class="fd-box" x="590" y="58" width="240" height="60" rx="10"/>
+            <text class="fd-step" x="710" y="84"  text-anchor="middle">Degas — no load</text>
+            <text class="fd-sub"  x="710" y="102" text-anchor="middle">until cavitation is even</text>
+            <line class="fd-arrow" x1="290" y1="88" x2="318" y2="88" marker-end="url(#fd-ah)"/>
+            <line class="fd-arrow" x1="560" y1="88" x2="588" y2="88" marker-end="url(#fd-ah)"/>
+            <line class="fd-arrow" x1="440" y1="120" x2="440" y2="138" marker-end="url(#fd-ah)"/>
 
             <!-- ===== PHASE 2 — START ===== -->
-            <rect class="fd-hdr-bar" x="30" y="144" width="820" height="32" rx="8" fill="#0b4f9e"/>
-            <circle cx="50" cy="160" r="11" fill="rgba(255,255,255,.25)"/>
-            <text class="fd-badge" x="50" y="164.5" text-anchor="middle">2</text>
-            <text class="fd-hdr" x="72" y="165">Start the cycle</text>
+            <rect class="fd-hdr-bar" x="30" y="142" width="820" height="32" rx="8" fill="#0b4f9e"/>
+            <circle cx="50" cy="158" r="11" fill="rgba(255,255,255,.25)"/>
+            <text class="fd-badge" x="50" y="162.5" text-anchor="middle">2</text>
+            <text class="fd-hdr" x="72" y="163">Start the cycle</text>
 
-            <rect class="fd-box" x="37"  y="188" width="185" height="60" rx="10"/>
-            <text class="fd-step" x="129.5" y="214" text-anchor="middle">Log in</text>
-            <text class="fd-sub"  x="129.5" y="232" text-anchor="middle">required level</text>
-            <rect class="fd-box" x="244" y="188" width="185" height="60" rx="10"/>
-            <text class="fd-step" x="336.5" y="212" text-anchor="middle">Load basket,</text>
-            <text class="fd-step" x="336.5" y="230" text-anchor="middle">close lid</text>
-            <rect class="fd-box" x="451" y="188" width="185" height="60" rx="10"/>
-            <text class="fd-step" x="543.5" y="214" text-anchor="middle">Select program</text>
-            <text class="fd-sub"  x="543.5" y="232" text-anchor="middle">1 – 4</text>
-            <rect class="fd-box" x="658" y="188" width="185" height="60" rx="10"/>
-            <text class="fd-step" x="750.5" y="214" text-anchor="middle">Press Start</text>
-            <text class="fd-sub"  x="750.5" y="232" text-anchor="middle">physical switch</text>
-            <line class="fd-arrow" x1="222" y1="218" x2="242" y2="218" marker-end="url(#fd-ah)"/>
-            <line class="fd-arrow" x1="429" y1="218" x2="449" y2="218" marker-end="url(#fd-ah)"/>
-            <line class="fd-arrow" x1="636" y1="218" x2="656" y2="218" marker-end="url(#fd-ah)"/>
-            <line class="fd-arrow" x1="440" y1="250" x2="440" y2="268" marker-end="url(#fd-ah)"/>
+            <rect class="fd-box" x="37"  y="186" width="185" height="60" rx="10"/>
+            <text class="fd-step" x="129.5" y="212" text-anchor="middle">Log in</text>
+            <text class="fd-sub"  x="129.5" y="230" text-anchor="middle">required level</text>
+            <rect class="fd-box" x="244" y="186" width="185" height="60" rx="10"/>
+            <text class="fd-step" x="336.5" y="210" text-anchor="middle">Load basket,</text>
+            <text class="fd-step" x="336.5" y="228" text-anchor="middle">close lid</text>
+            <rect class="fd-box" x="451" y="186" width="185" height="60" rx="10"/>
+            <text class="fd-step" x="543.5" y="212" text-anchor="middle">Select program</text>
+            <text class="fd-sub"  x="543.5" y="230" text-anchor="middle">1 – 4</text>
+            <rect class="fd-box" x="658" y="186" width="185" height="60" rx="10"/>
+            <text class="fd-step" x="750.5" y="212" text-anchor="middle">Press Start</text>
+            <text class="fd-sub"  x="750.5" y="230" text-anchor="middle">physical switch</text>
+            <line class="fd-arrow" x1="222" y1="216" x2="242" y2="216" marker-end="url(#fd-ah)"/>
+            <line class="fd-arrow" x1="429" y1="216" x2="449" y2="216" marker-end="url(#fd-ah)"/>
+            <line class="fd-arrow" x1="636" y1="216" x2="656" y2="216" marker-end="url(#fd-ah)"/>
+            <line class="fd-arrow" x1="440" y1="248" x2="440" y2="262" marker-end="url(#fd-ah)"/>
+
+            <!-- ===== GATE — START CONDITIONS ===== -->
+            <rect class="fd-gate" x="30" y="266" width="820" height="98" rx="10"/>
+            <circle cx="48" cy="288" r="9" fill="#1f8b4c"/>
+            <text class="fd-tick" x="48" y="291.5" text-anchor="middle">✓</text>
+            <text class="fd-gate-title" x="64" y="292">Start conditions — all must be met before the cycle runs</text>
+            <rect class="fd-cond" x="46"  y="308" width="186" height="44" rx="8"/>
+            <circle cx="66" cy="330" r="8" fill="#1f8b4c"/><text class="fd-tick" x="66" y="333.5" text-anchor="middle">✓</text>
+            <text class="fd-cond-txt" x="82" y="326">Process-tank</text>
+            <text class="fd-cond-txt" x="82" y="342">level high</text>
+            <rect class="fd-cond" x="246" y="308" width="186" height="44" rx="8"/>
+            <circle cx="266" cy="330" r="8" fill="#1f8b4c"/><text class="fd-tick" x="266" y="333.5" text-anchor="middle">✓</text>
+            <text class="fd-cond-txt" x="282" y="326">Pump &amp; heater</text>
+            <text class="fd-cond-txt" x="282" y="342">feedbacks ON</text>
+            <rect class="fd-cond" x="446" y="308" width="186" height="44" rx="8"/>
+            <circle cx="466" cy="330" r="8" fill="#1f8b4c"/><text class="fd-tick" x="466" y="333.5" text-anchor="middle">✓</text>
+            <text class="fd-cond-txt" x="482" y="326">Temp ≤ set point,</text>
+            <text class="fd-cond-txt" x="482" y="342">RTD healthy</text>
+            <rect class="fd-cond" x="646" y="308" width="186" height="44" rx="8"/>
+            <circle cx="666" cy="330" r="8" fill="#1f8b4c"/><text class="fd-tick" x="666" y="333.5" text-anchor="middle">✓</text>
+            <text class="fd-cond-txt" x="682" y="326">No surge-</text>
+            <text class="fd-cond-txt" x="682" y="342">arrestor fault</text>
+            <line class="fd-arrow" x1="440" y1="366" x2="440" y2="386" marker-end="url(#fd-ah)"/>
+            <text class="fd-arrow-lbl" x="452" y="381">all conditions met</text>
 
             <!-- ===== PHASE 3 — AUTOMATIC CYCLE ===== -->
-            <rect class="fd-hdr-bar" x="30" y="272" width="820" height="32" rx="8" fill="#073567"/>
-            <circle cx="50" cy="288" r="11" fill="rgba(255,255,255,.25)"/>
-            <text class="fd-badge" x="50" y="292.5" text-anchor="middle">3</text>
-            <text class="fd-hdr" x="72" y="293">Automatic cycle</text>
-            <text class="fd-hdr-note" x="842" y="293" text-anchor="end">the controller runs this automatically</text>
+            <rect class="fd-hdr-bar" x="30" y="390" width="820" height="32" rx="8" fill="#073567"/>
+            <circle cx="50" cy="406" r="11" fill="rgba(255,255,255,.25)"/>
+            <text class="fd-badge" x="50" y="410.5" text-anchor="middle">3</text>
+            <text class="fd-hdr" x="72" y="411">Automatic cycle</text>
+            <text class="fd-hdr-note" x="842" y="411" text-anchor="end">the controller runs this automatically</text>
 
-            <rect class="fd-box run" x="50"  y="316" width="240" height="60" rx="10"/>
-            <text class="fd-step" x="170" y="342" text-anchor="middle">Pre-filtration</text>
-            <text class="fd-sub"  x="170" y="360" text-anchor="middle">clears the bath</text>
-            <rect class="fd-box run" x="320" y="316" width="240" height="60" rx="10"/>
-            <text class="fd-step" x="440" y="342" text-anchor="middle">Ultrasonic clean</text>
-            <text class="fd-sub"  x="440" y="360" text-anchor="middle">at set power &amp; temperature</text>
-            <rect class="fd-box run" x="590" y="316" width="240" height="60" rx="10"/>
-            <text class="fd-step" x="710" y="342" text-anchor="middle">Post-filtration</text>
-            <text class="fd-sub"  x="710" y="360" text-anchor="middle">polishes the bath</text>
-            <line class="fd-arrow" x1="290" y1="346" x2="318" y2="346" marker-end="url(#fd-ah)"/>
-            <line class="fd-arrow" x1="560" y1="346" x2="588" y2="346" marker-end="url(#fd-ah)"/>
-            <line class="fd-arrow" x1="440" y1="378" x2="440" y2="396" marker-end="url(#fd-ah)"/>
+            <rect class="fd-box run" x="50"  y="434" width="240" height="60" rx="10"/>
+            <text class="fd-step" x="170" y="460" text-anchor="middle">Pre-filtration</text>
+            <text class="fd-sub"  x="170" y="478" text-anchor="middle">clears the bath</text>
+            <rect class="fd-box run" x="320" y="434" width="240" height="60" rx="10"/>
+            <text class="fd-step" x="440" y="460" text-anchor="middle">Ultrasonic clean</text>
+            <text class="fd-sub"  x="440" y="478" text-anchor="middle">at set power &amp; temperature</text>
+            <rect class="fd-box run" x="590" y="434" width="240" height="60" rx="10"/>
+            <text class="fd-step" x="710" y="460" text-anchor="middle">Post-filtration</text>
+            <text class="fd-sub"  x="710" y="478" text-anchor="middle">polishes the bath</text>
+            <line class="fd-arrow" x1="290" y1="464" x2="318" y2="464" marker-end="url(#fd-ah)"/>
+            <line class="fd-arrow" x1="560" y1="464" x2="588" y2="464" marker-end="url(#fd-ah)"/>
+            <line class="fd-arrow" x1="440" y1="496" x2="440" y2="512" marker-end="url(#fd-ah)"/>
 
             <!-- ===== PHASE 4 — FINISH ===== -->
-            <rect class="fd-hdr-bar" x="30" y="400" width="820" height="32" rx="8" fill="#1f8b4c"/>
-            <circle cx="50" cy="416" r="11" fill="rgba(255,255,255,.25)"/>
-            <text class="fd-badge" x="50" y="420.5" text-anchor="middle">4</text>
-            <text class="fd-hdr" x="72" y="421">Finish</text>
+            <rect class="fd-hdr-bar" x="30" y="516" width="820" height="32" rx="8" fill="#1f8b4c"/>
+            <circle cx="50" cy="532" r="11" fill="rgba(255,255,255,.25)"/>
+            <text class="fd-badge" x="50" y="536.5" text-anchor="middle">4</text>
+            <text class="fd-hdr" x="72" y="537">Finish</text>
 
-            <rect class="fd-box" x="160" y="444" width="260" height="60" rx="10"/>
-            <text class="fd-step" x="290" y="470" text-anchor="middle">Raise &amp; drain basket</text>
-            <text class="fd-sub"  x="290" y="488" text-anchor="middle">let it drain over the tank</text>
-            <rect class="fd-box" x="460" y="444" width="260" height="60" rx="10"/>
-            <text class="fd-step" x="590" y="470" text-anchor="middle">Unload</text>
-            <text class="fd-sub"  x="590" y="488" text-anchor="middle">ready for the next batch</text>
-            <line class="fd-arrow" x1="420" y1="474" x2="458" y2="474" marker-end="url(#fd-ah)"/>
+            <rect class="fd-box" x="160" y="560" width="260" height="60" rx="10"/>
+            <text class="fd-step" x="290" y="586" text-anchor="middle">Raise &amp; drain basket</text>
+            <text class="fd-sub"  x="290" y="604" text-anchor="middle">let it drain over the tank</text>
+            <rect class="fd-box" x="460" y="560" width="260" height="60" rx="10"/>
+            <text class="fd-step" x="590" y="586" text-anchor="middle">Unload</text>
+            <text class="fd-sub"  x="590" y="604" text-anchor="middle">ready for the next batch</text>
+            <line class="fd-arrow" x1="420" y1="590" x2="458" y2="590" marker-end="url(#fd-ah)"/>
           </svg>
-          <figcaption><b>Cycle flow</b> Setting up and running a cleaning cycle, end to end. Steps 1–2 and 4 are operator actions; step 3 runs automatically once Start is pressed.</figcaption>
+          <figcaption><b>Cycle flow</b> Setting up and running a cleaning cycle, end to end. Steps 1–2 and 4 are operator actions; the controller checks the start conditions, then runs the cleaning cycle (step 3) automatically. If any condition is not met the cycle will not start and an alarm is raised — see Section 8.</figcaption>
         </figure>
         <p>Before a process will run, the controller checks that the machine is in a safe and ready state. <strong>All of the following conditions must be met:</strong></p>
         <ul>
