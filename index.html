@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVOSONIC 1000 — Ultrasonic Cleaning System | Operating &amp; Service Manual · Kleentek Australia</title>
+<meta name="description" content="Operating Instructions and Service Manual for the EVOSONIC 1000 (EVS1000) ultrasonic cleaning system. Control software, process, alarms and servicing. Supplied and supported by Kleentek Australia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0a1622;
+  --blue:#0b4f9e;        /* Kleentek industrial blue */
+  --blue-deep:#073567;
+  --blue-bright:#1877d2;
+  --steel:#5b6b7c;
+  --line:#d9e0e8;
+  --line-soft:#eaeef3;
+  --paper:#f4f6f9;
+  --white:#ffffff;
+  --amber:#e8881a;
+  --green:#1f8b4c;
+  --red:#c0392b;
+  --shadow:0 1px 2px rgba(10,22,34,.04),0 8px 28px rgba(10,22,34,.08);
+  --shadow-lg:0 24px 60px rgba(7,53,103,.18);
+  --maxw:880px;
+  --nav:300px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Spline Sans',system-ui,sans-serif;
+  font-size:16.5px;line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--blue);text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ---------- Layout ---------- */
+.shell{display:grid;grid-template-columns:var(--nav) 1fr;min-height:100vh}
+
+/* ---------- Sidebar nav ---------- */
+.nav{
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:linear-gradient(180deg,var(--blue-deep),#052a52);
+  color:#cfe0f2;padding:0;border-right:1px solid rgba(255,255,255,.06);
+}
+.nav .brand{
+  padding:26px 26px 22px;border-bottom:1px solid rgba(255,255,255,.09);
+  position:sticky;top:0;background:linear-gradient(180deg,#073567,#073567);z-index:2;
+}
+.brand .mark{
+  font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:.14em;
+  font-size:23px;color:#fff;line-height:1;display:flex;align-items:center;gap:10px;
+}
+.brand .mark .dot{width:11px;height:11px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(232,136,26,.18)}
+.brand .tag{margin-top:9px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#7fa8d6;font-weight:600}
+.nav ol{list-style:none;margin:0;padding:16px 0 60px;counter-reset:sec}
+.nav .group{padding:18px 26px 6px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#5e89bd;font-weight:700}
+.nav li a{
+  display:block;padding:8px 26px 8px 26px;color:#bcd2ec;font-size:14px;
+  border-left:3px solid transparent;transition:.18s;
+}
+.nav li a:hover{background:rgba(255,255,255,.05);color:#fff}
+.nav li a.active{background:rgba(24,119,210,.22);border-left-color:var(--amber);color:#fff;font-weight:600}
+
+/* ---------- Main ---------- */
+.main{min-width:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;color:#fff;overflow:hidden;
+  background:linear-gradient(120deg,#062f5b 0%,#0b4f9e 60%,#1877d2 120%);
+}
+.hero::after{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(900px 400px at 85% -10%,rgba(255,255,255,.16),transparent 60%),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 2px,transparent 2px 22px);
+  pointer-events:none}
+.hero .wrap{padding:64px 40px 56px;position:relative;z-index:1}
+.hero .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#9ec4ee;font-weight:600;margin-bottom:18px}
+.hero h1{
+  font-family:'Archivo',sans-serif;font-weight:800;line-height:1.04;
+  font-size:clamp(30px,4.4vw,50px);margin:0 0 18px;letter-spacing:-.01em;
+}
+.hero h1 span{color:#ffd9a8}
+.hero .lede{font-size:18px;max-width:620px;color:#e4eefb;line-height:1.65}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 0}
+.hero .chip{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  padding:7px 14px;border-radius:100px;font-size:12.5px;font-weight:500;letter-spacing:.02em;backdrop-filter:blur(4px);
+}
+
+/* ---------- Sections ---------- */
+section{padding:54px 0 8px;scroll-margin-top:20px}
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;font-family:'Spline Sans Mono',monospace;
+  font-size:12px;letter-spacing:.12em;color:var(--blue);font-weight:500;
+  text-transform:uppercase;margin-bottom:12px;
+}
+.kicker .num{
+  background:var(--blue);color:#fff;width:26px;height:26px;border-radius:7px;
+  display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:12.5px;
+}
+h2{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(24px,3vw,33px);
+  line-height:1.12;margin:0 0 14px;letter-spacing:-.01em}
+h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;margin:34px 0 10px;color:var(--blue-deep)}
+h4{font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--steel);margin:26px 0 8px}
+p{margin:0 0 16px}
+.section-rule{height:1px;background:var(--line);margin:8px 0 0}
+ul,ol.list{margin:0 0 16px;padding-left:22px}
+li{margin:5px 0}
+strong{font-weight:600;color:var(--blue-deep)}
+
+/* ---------- Callouts ---------- */
+.note{
+  border-radius:12px;padding:16px 18px 16px 50px;margin:22px 0;position:relative;
+  font-size:15px;line-height:1.6;border:1px solid var(--line);background:var(--white);box-shadow:var(--shadow);
+}
+.note::before{position:absolute;left:16px;top:15px;font-size:18px;font-weight:700}
+.note.warn{background:#fdf3e7;border-color:#f3d7ad}
+.note.warn::before{content:"⚠";color:var(--amber)}
+.note.danger{background:#fbecea;border-color:#f0c7c1}
+.note.danger::before{content:"⚡";color:var(--red)}
+.note.info{background:#eef5fd;border-color:#cfe1f6}
+.note.info::before{content:"ℹ";color:var(--blue-bright);font-style:normal}
+.note .t{font-weight:700;color:var(--blue-deep);display:block;margin-bottom:2px;letter-spacing:.02em}
+.note.warn .t{color:#a9650f}.note.danger .t{color:#a02a1c}
+
+/* ---------- Figures ---------- */
+figure{margin:26px 0;background:var(--white);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+figure img{width:100%}
+figure.screen img{background:#000}
+figcaption{font-size:13px;color:var(--steel);padding:11px 16px;border-top:1px solid var(--line-soft);
+  background:var(--paper);display:flex;gap:8px;align-items:baseline}
+figcaption b{color:var(--blue);font-family:'Spline Sans Mono',monospace;font-size:11.5px;
+  letter-spacing:.04em;text-transform:uppercase;flex:none}
+
+/* ---------- Stage cards ---------- */
+.stages{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}
+.stage{background:var(--white);border:1px solid var(--line);border-radius:13px;
+  padding:18px 18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.stage::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}
+.stage:nth-child(1)::before{background:var(--blue-bright)}
+.stage:nth-child(2)::before{background:var(--blue)}
+.stage:nth-child(3)::before{background:#2b9be0}
+.stage:nth-child(4)::before{background:var(--amber)}
+.stage .s-num{font-family:'Archivo';font-weight:900;font-size:13px;color:var(--steel);letter-spacing:.1em}
+.stage .s-name{font-family:'Archivo';font-weight:700;font-size:16.5px;color:var(--blue-deep);margin:3px 0 6px}
+.stage p{font-size:13.5px;margin:0;color:#3f4f5e;line-height:1.55}
+
+/* ---------- Spec tables ---------- */
+.spectable{width:100%;border-collapse:collapse;margin:14px 0 26px;font-size:14.5px;
+  background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.spectable caption{caption-side:top;text-align:left;font-family:'Archivo';font-weight:700;
+  font-size:15px;color:var(--blue-deep);padding:0 0 8px}
+.spectable th,.spectable td{padding:10px 16px;text-align:left;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.spectable th{background:var(--blue-deep);color:#dce9f7;font-weight:600;font-size:12px;
+  letter-spacing:.08em;text-transform:uppercase}
+.spectable td:first-child{font-weight:600;color:var(--blue-deep);width:40%;font-size:14px}
+.spectable tr:last-child td{border-bottom:none}
+.spectable tbody tr:nth-child(even){background:#fafbfd}
+.spectable.sub th{background:var(--steel)}
+
+/* alarms table */
+.alarms{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0 26px;
+  background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.alarms th{background:var(--ink);color:#cfe0f2;text-align:left;padding:11px 16px;
+  font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.alarms td{padding:11px 16px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.alarms td:first-child{font-weight:600;color:var(--blue-deep);width:34%}
+.alarms tr:last-child td{border-bottom:none}
+.alarms tbody tr:hover{background:#f3f7fc}
+
+/* lamp legend */
+.lamps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:18px 0}
+.lamp{display:flex;gap:12px;align-items:flex-start;background:var(--white);border:1px solid var(--line);
+  border-radius:11px;padding:13px 15px;box-shadow:var(--shadow)}
+.lamp .led{width:16px;height:16px;border-radius:50%;flex:none;margin-top:3px;box-shadow:inset 0 0 4px rgba(0,0,0,.3)}
+.lamp .led.r{background:var(--red)}.lamp .led.o{background:var(--amber)}.lamp .led.g{background:var(--green)}
+.lamp .led.og{background:linear-gradient(135deg,var(--amber) 50%,var(--green) 50%)}
+.lamp .led.blink{animation:blink 1s steps(2,start) infinite}
+@keyframes blink{50%{opacity:.25}}
+.lamp .lt{font-size:13.5px;line-height:1.45}.lamp .lt b{display:block;font-size:13px}
+
+/* steps */
+.flow{counter-reset:step;margin:18px 0;padding:0;list-style:none}
+.flow li{position:relative;padding:0 0 18px 44px;margin:0}
+.flow li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:-2px;
+  width:30px;height:30px;background:var(--blue);color:#fff;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Archivo';font-size:14px}
+.flow li::after{content:"";position:absolute;left:14px;top:30px;bottom:2px;width:2px;background:var(--line)}
+.flow li:last-child::after{display:none}
+.flow li b{color:var(--blue-deep)}
+
+/* contents grid */
+.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:22px 0 0}
+.toc-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+  box-shadow:var(--shadow);transition:.18s;display:block}
+.toc-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#bcd4ee}
+.toc-card .tc-n{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--amber);font-weight:500}
+.toc-card .tc-t{font-family:'Archivo';font-weight:700;color:var(--blue-deep);font-size:16px;margin:3px 0 3px}
+.toc-card .tc-d{font-size:13px;color:var(--steel);line-height:1.45}
+
+/* footer */
+footer{margin-top:60px;background:var(--ink);color:#9fb4c9;padding:40px 0 46px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
+footer .mark{font-family:'Archivo';font-weight:900;letter-spacing:.14em;color:#fff;font-size:20px}
+footer .addr{font-size:13.5px;line-height:1.65;max-width:330px}
+footer .addr b{color:#cfe0f2}
+footer .small{font-size:12px;color:#62788e;margin-top:22px;letter-spacing:.02em}
+footer a{color:#7fb0e6}
+
+.inline-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:1040px){
+  :root{--nav:0px}
+  .shell{grid-template-columns:1fr}
+  .nav{display:none}
+}
+@media(max-width:680px){
+  .wrap{padding:0 22px}.hero .wrap{padding:46px 22px 44px}
+  .stages,.toc-grid,.inline-2{grid-template-columns:1fr}
+  .spectable td:first-child{width:auto}
+}
+
+/* topbar for mobile */
+.topbar{display:none;position:sticky;top:0;z-index:30;background:var(--blue-deep);color:#fff;
+  padding:13px 22px;align-items:center;justify-content:space-between}
+.topbar .mark{font-family:'Archivo';font-weight:900;letter-spacing:.12em;font-size:17px}
+.topbar button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#fff;
+  border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600}
+@media(max-width:1040px){.topbar{display:flex}}
+#mnav{display:none;background:#052a52;padding:8px 0}
+#mnav a{display:block;color:#bcd2ec;padding:9px 22px;font-size:14px;border-bottom:1px solid rgba(255,255,255,.05)}
+#mnav.open{display:block}
+
+/* ---------- Download cards ---------- */
+.dl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:22px 0 0}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:15px 17px;box-shadow:var(--shadow);transition:.18s}
+.dl-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#bcd4ee}
+.dl-card .pdf{flex:none;width:44px;height:44px;border-radius:9px;background:var(--blue-deep);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-family:'Spline Sans Mono',monospace;
+  font-size:11px;font-weight:600;letter-spacing:.04em}
+.dl-card .dl-t{font-family:'Archivo';font-weight:700;color:var(--blue-deep);font-size:15.5px;line-height:1.2;display:block}
+.dl-card .dl-m{font-size:12.5px;color:var(--steel);margin-top:3px;display:block}
+.dl-card .arrow{margin-left:auto;flex:none;color:var(--blue);font-size:22px;font-weight:700;line-height:1}
+@media(max-width:680px){.dl-grid{grid-template-columns:1fr}}
+
+/* empty-state for downloads not yet added */
+.dl-empty{background:var(--white);border:1px dashed #c2cedb;border-radius:12px;padding:22px 20px;
+  margin:22px 0 0;color:var(--steel);font-size:14.5px;text-align:center}
+.dl-empty b{color:var(--blue-deep)}
+
+/* ---------- Screenshot gallery ---------- */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:22px 0}
+.gallery figure{margin:0}
+.gallery figure img{width:100%;background:#000}
+.gallery h4{grid-column:1/-1;margin:18px 0 0}
+@media(max-width:680px){.gallery{grid-template-columns:1fr}}
+
+/* ---------- Download button ---------- */
+.dl-btn{display:inline-flex;align-items:center;gap:9px;margin-top:28px;background:#fff;color:var(--blue-deep);
+  font-family:'Archivo';font-weight:700;font-size:14.5px;letter-spacing:.01em;padding:12px 22px;
+  border-radius:100px;box-shadow:var(--shadow-lg);transition:.18s}
+.dl-btn:hover{transform:translateY(-2px)}
+.dl-btn .a{font-size:17px;line-height:1}
+
+/* ---------- Print / PDF ---------- */
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  @page{size:A4;margin:14mm 12mm}
+  .topbar,#mnav,.nav,.no-print{display:none !important}
+  .shell{display:block}
+  .main{min-width:0}
+  .wrap{max-width:none;padding:0 6mm}
+  .hero .wrap{padding:24px 6mm}
+  body{font-size:11pt}
+  section{padding:18px 0 4px}
+  figure,table,.note,.stage,.toc-card,.dl-card,.lamp,.inline-2,.gallery figure{break-inside:avoid}
+  h2,h3,h4,caption{break-after:avoid}
+  h2{font-size:18pt}
+  footer{break-before:avoid}
+  a{color:var(--ink);text-decoration:none}
+}
+
+/* ---------- Compact touch-panel (MMI) screenshots ---------- */
+figure.screen{background:#000}
+figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;background:#000}
+@media print{ figure.screen img{max-height:78mm} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="mark">KLEENTEK</span>
+  <button onclick="document.getElementById('mnav').classList.toggle('open')">Contents ▾</button>
+</div>
+<nav id="mnav">
+  <a href="#s1">1 · System Operation</a>
+  <a href="#s2">2 · Maintenance Functions</a>
+  <a href="#s3">3 · Status &amp; Supervisor Screens</a>
+  <a href="#s4">4 · Process Overview</a>
+  <a href="#s5">5 · Tower-Lamp Status</a>
+  <a href="#s6">6 · Alarms &amp; Troubleshooting</a>
+  <a href="#s7">7 · Maintenance &amp; Warranty</a>
+  <a href="#s8">8 · MMI Screen Reference</a>
+  <a href="#s9">9 · Diagrams &amp; Drawings</a>
+  <a href="#s10">10 · Download</a>
+</nav>
+
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="nav">
+    <div class="brand">
+      <div class="mark"><span class="dot"></span>KLEENTEK</div>
+      <div class="tag">Australia · Industrial Cleaning Systems</div>
+    </div>
+    <div class="group">EVOSONIC 1000 — System Manual</div>
+    <ol>
+      <li><a href="#s1">1 · System Operation (MMI)</a></li>
+      <li><a href="#s2">2 · Maintenance Functions</a></li>
+      <li><a href="#s3">3 · Status &amp; Supervisor Screens</a></li>
+      <li><a href="#s4">4 · Process Overview</a></li>
+      <li><a href="#s5">5 · Tower-Lamp Status</a></li>
+      <li><a href="#s6">6 · Alarms &amp; Troubleshooting</a></li>
+      <li><a href="#s7">7 · Maintenance &amp; Warranty</a></li>
+      <li><a href="#s8">8 · MMI Screen Reference</a></li>
+      <li><a href="#s9">9 · Diagrams &amp; Drawings</a></li>
+      <li><a href="#s10">10 · Download</a></li>
+    </ol>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Operating Instructions &amp; Service Manual</div>
+        <h1>EVOSONIC 1000<br><span>Ultrasonic Cleaning System</span></h1>
+        <p class="lede">An aqueous ultrasonic cleaning system with PLC-controlled cleaning programs, filtration and degas functions, operated from a 7&Prime; touch-screen interface — supplied and supported by Kleentek&nbsp;Australia.</p>
+        <div class="meta">
+          <span class="chip">Siemens S7-1200 PLC</span>
+          <span class="chip">7&Prime; TP700 Comfort touch HMI</span>
+          <span class="chip">4 cleaning programs</span>
+          <span class="chip">Multi-level login</span>
+          <span class="chip">Tower-lamp status</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap">
+
+      <!-- Quick contents -->
+      <section id="top" style="padding-top:40px">
+        <div class="kicker"><span class="num">★</span> How to Use This Manual</div>
+        <h2>Important — Read Before Operation</h2>
+        <p>This manual covers the <strong>control software, operation, process and servicing</strong> of your Kleentek&nbsp;Australia EVOSONIC&nbsp;1000 (EVS1000) ultrasonic cleaning system. It documents the touch-screen interface (MMI), the cleaning and maintenance programs, the process start conditions, the tower-lamp status indications, the alarm list and the routine servicing requirements.</p>
+        <p>The instructions should be carefully studied by machine operators and service mechanics before the machine is operated. Operators should be familiar with Sections&nbsp;1, 4 and 5 before running a cycle; supervisors and service staff should also read Sections&nbsp;2, 3, 6 and 7. Keep this manual with the machine.</p>
+        <div class="toc-grid">
+          <a class="toc-card" href="#s1"><span class="tc-n">SECTION 1</span><div class="tc-t">System Operation</div><div class="tc-d">Logging in, selecting a cleaning program and editing program data on the touch panel.</div></a>
+          <a class="toc-card" href="#s4"><span class="tc-n">SECTION 4</span><div class="tc-t">Process Overview</div><div class="tc-d">The conditions that must be met for a cycle to run, and how to start and stop it.</div></a>
+          <a class="toc-card" href="#s6"><span class="tc-n">SECTION 6</span><div class="tc-t">Alarms &amp; Troubleshooting</div><div class="tc-d">Every alarm message the system can raise, its cause and how to rectify it.</div></a>
+          <a class="toc-card" href="#s7"><span class="tc-n">SECTION 7</span><div class="tc-t">Maintenance &amp; Warranty</div><div class="tc-d">Routine maintenance, servicing, warranty and electrical safety warnings.</div></a>
+        </div>
+        <div class="note info"><span class="t">Proprietary notice</span>The contents of this manual are proprietary information. No part may be transmitted, written or verbal, to any third party, or copied in any way, without the prior written consent of Kleentek&nbsp;Australia. All rights are reserved in respect of changes of design and technical data.</div>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 1. SYSTEM OPERATION -->
+      <section id="s1">
+        <div class="kicker"><span class="num">1</span> System Operation</div>
+        <h2>Operating the Touch-Panel Interface (MMI)</h2>
+        <p>The EVOSONIC&nbsp;1000 is controlled by a <strong>Siemens S7-1200 (1214C&nbsp;DC/DC/DC)</strong> PLC with expansion modules. The operator interface is a <strong>7&Prime; TP700 Comfort</strong> colour touch screen (800&nbsp;×&nbsp;480), which acts as both display and keyboard. The <strong>main screen</strong> appears automatically at power-on whenever there is no active alarm.</p>
+        <p>The main screen shows the current date and time, the process-tank temperature, the logged-in user, the selected program (if any), the lid-bypass state, the process time and any system status messages. Pressing the <strong>Alarms</strong> key opens the alarms screen at any time.</p>
+
+        <div class="inline-2">
+          <figure class="screen"><img src="assets/screens/main.jpeg" alt="MMI main screen"><figcaption><b>Main</b> Temperature, date/time, current user, status messages and the lid-bypass indicator.</figcaption></figure>
+          <figure class="screen"><img src="assets/screens/user.jpeg" alt="User login screen"><figcaption><b>Login</b> Reached from the main screen; enter the password for the required security level.</figcaption></figure>
+        </div>
+
+        <h3>Logging In &amp; User Levels</h3>
+        <p>The machine cannot be operated until the user has logged in at the required security level. Press the <strong>Login</strong> key on the main screen to open the login screen, then enter a password. If the password is correct the main screen returns and the user name is shown; menus above the user's level remain disabled.</p>
+        <table class="spectable">
+          <caption>Default users &amp; passwords</caption>
+          <thead><tr><th>User</th><th>Default password</th></tr></thead>
+          <tbody>
+            <tr><td>User&nbsp;1</td><td>3060</td></tr>
+            <tr><td>User&nbsp;2</td><td>3070</td></tr>
+            <tr><td>User&nbsp;3</td><td>3080</td></tr>
+            <tr><td>Supervisor</td><td>4050</td></tr>
+          </tbody>
+        </table>
+        <div class="note warn"><span class="t">Change the default passwords</span>The passwords above are factory defaults. The <strong>Supervisor</strong> can rename users and change passwords from the user-configuration screen (press the tab/key from the login screen). Change them after commissioning so that program and supervisor functions are protected.</div>
+
+        <h3>Selecting a Program</h3>
+        <p>From the main screen press the <strong>Home</strong> key to open the program-selection screen. Tap the required <strong>program number</strong> (1–4) to select it; a "program selected" message confirms the choice, and the program cycle, lid and RTD-selection status can be monitored from this screen.</p>
+        <div class="inline-2">
+          <figure class="screen"><img src="assets/screens/home.jpeg" alt="Program selection screen"><figcaption><b>Home</b> Select program 1–4; monitor cycle, lid and RTD status.</figcaption></figure>
+          <figure class="screen"><img src="assets/screens/program-selected.jpeg" alt="Program selected screen"><figcaption><b>Program selected</b> The selected program is shown back on the main screen.</figcaption></figure>
+        </div>
+
+        <h3>Editing a Program</h3>
+        <p>With a program selected, press and hold the <strong>HOLD&nbsp;TO&nbsp;EDIT</strong> button for 3&nbsp;seconds to open that program's data-entry screen. Tap a value field to open the numeric keypad and enter the new value. Programs 2, 3 and 4 are selected and edited in exactly the same way.</p>
+        <figure class="screen"><img src="assets/screens/program-data-entry.jpeg" alt="Program data-entry screen"><figcaption><b>Data entry — Program 1</b> Pre-filtration, ultrasonic time &amp; power, post-filtration, control temperature and lid mode.</figcaption></figure>
+        <table class="spectable">
+          <caption>Program data-entry ranges</caption>
+          <thead><tr><th>Parameter</th><th>Range</th></tr></thead>
+          <tbody>
+            <tr><td>Pre-filtration time (minutes)</td><td>1 – 9999</td></tr>
+            <tr><td>Ultrasonic time (minutes)</td><td>1 – 9999</td></tr>
+            <tr><td>Ultrasonic power control (%)</td><td>30 – 100</td></tr>
+            <tr><td>Post-filtration time (minutes)</td><td>1 – 9999</td></tr>
+            <tr><td>Control temperature (°C)</td><td>25 – 75</td></tr>
+            <tr><td>Lid</td><td>In&nbsp;Use / Bypass</td></tr>
+          </tbody>
+        </table>
+        <p>Each cleaning program therefore runs as a sequence: a <strong>pre-filtration</strong> period to clear the bath, an <strong>ultrasonic clean</strong> at the set power and temperature, then a <strong>post-filtration</strong> period to polish the bath afterwards.</p>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 2. MAINTENANCE FUNCTIONS -->
+      <section id="s2">
+        <div class="kicker"><span class="num">2</span> Maintenance Functions</div>
+        <h2>Maintenance &amp; Service Programs</h2>
+        <p>Press the <strong>Maintenance</strong> key to open the maintenance screen. As with cleaning programs, tap a function to select it and hold its button for 3&nbsp;seconds to edit its data. The cycle and lid status can be monitored from this screen.</p>
+        <figure class="screen"><img src="assets/screens/maintenance.jpeg" alt="Maintenance screen"><figcaption><b>Maintenance</b> Day-end maintenance, degas, filtration, fill, filter change, drain and shutdown/wake-up.</figcaption></figure>
+
+        <h3>Day-End Maintenance</h3>
+        <p>Runs a filtration pass to clean up the bath at the end of the day. Holding <strong>HOLD&nbsp;TO&nbsp;EDIT</strong> opens its data entry. On completion it automatically triggers the shutdown &amp; wake-up process.</p>
+        <ul><li>Maintenance filtration time (minutes): <strong>1 – 9999</strong></li></ul>
+
+        <h3>Degas</h3>
+        <p>Runs the ultrasonics with no load to drive dissolved air out of fresh or topped-up solution, restoring full cavitation power.</p>
+        <ul>
+          <li>Ultrasonic degas time (minutes): <strong>1 – 9999</strong></li>
+          <li>Ultrasonic power (%): <strong>30 – 100</strong></li>
+        </ul>
+
+        <h3>Filtration</h3>
+        <p>Runs the filtration pump on its own to clarify the bath between cycles.</p>
+        <ul><li>Filtration time (minutes): <strong>1 – 9999</strong></li></ul>
+
+        <div class="inline-2">
+          <figure class="screen"><img src="assets/screens/dayend-data-entry.jpeg" alt="Day end maintenance data entry"><figcaption><b>Day-end</b> Maintenance filtration time.</figcaption></figure>
+          <figure class="screen"><img src="assets/screens/degas-data-entry.jpeg" alt="Degas data entry"><figcaption><b>Degas</b> Degas time and ultrasonic power.</figcaption></figure>
+        </div>
+
+        <h3>Fill Bath</h3>
+        <p>Select <strong>Fill Bath</strong> and press <strong>Fill</strong> to activate fill mode. <strong>Stay on this screen</strong> while filling — leaving it deactivates fill mode. Open the ball valve to fill, check the bath, and close the valve once the correct level is reached.</p>
+
+        <h3>Change Filter &amp; Reset Counter</h3>
+        <p>Press <strong>Filter Change</strong> to enter filter-change mode (stay on the screen, or the mode stops). The screen shows the running filter counter; the Supervisor can set the filter-change cycle target (<strong>1 – 999999</strong>) and press <strong>Reset</strong> to zero the counter after fitting new cartridges.</p>
+
+        <h3>Drain Bath &amp; Reset Counter</h3>
+        <p>Press <strong>Drain</strong> to activate drain mode (stay on the screen, or it deactivates). A 60-second timer starts; shutdown mode follows once it elapses. The Supervisor can set the drain counter target (<strong>1 – 999999</strong>) and reset it.</p>
+        <div class="note warn"><span class="t">Drain only below 40&nbsp;°C</span>Check that the bath temperature is <strong>below 40&nbsp;°C</strong> before draining and opening the ball valve. Close the ball valve once drained and reset the counter.</div>
+
+        <div class="inline-2">
+          <figure class="screen"><img src="assets/screens/fill-bath.jpeg" alt="Fill bath screen"><figcaption><b>Fill bath</b> Activate fill mode and open the ball valve.</figcaption></figure>
+          <figure class="screen"><img src="assets/screens/change-filter.jpeg" alt="Change filter screen"><figcaption><b>Change filter</b> Counter, target and reset.</figcaption></figure>
+        </div>
+
+        <h3>Shutdown &amp; Wake-Up</h3>
+        <p>The shutdown &amp; wake-up process can be started from the maintenance screen, runs automatically after day-end maintenance, and runs on any enabled day once the machine's off-time is reached and the running cycle completes. A 30-second on-screen delay is shown first (it can be skipped by pressing the button again). When sleep time elapses the active program is deselected, the machine — including heating — switches off, and the user is logged off. At the next enabled wake-up time, heating restarts automatically to hold the set temperature and the home screen is shown so a cycle can be started. During sleep the screen prompts <em>"touch anywhere to wake up"</em>.</p>
+        <p>From <strong>Shutdown and Wake-up Heating</strong> the Supervisor configures idle heating:</p>
+        <ul>
+          <li>Enable / disable automatic shutdown &amp; wake-up heating.</li>
+          <li>Set start and stop times for each day of the week.</li>
+          <li>Enable / disable each day individually.</li>
+          <li>Shutdown &amp; wake-up temperature: <strong>10 – 80&nbsp;°C</strong>.</li>
+        </ul>
+        <div class="note info"><span class="t">If all days are disabled</span>If every day is deselected and the shutdown &amp; wake-up process is started, the system raises a warning on screen for the user to act on.</div>
+        <div class="inline-2">
+          <figure class="screen"><img src="assets/screens/shutdown-wakeup.jpeg" alt="Shutdown and wake-up screen"><figcaption><b>Shutdown &amp; wake-up</b> Sleep details and 30-second delay.</figcaption></figure>
+          <figure class="screen"><img src="assets/screens/shutdown-heating-config.jpeg" alt="Shutdown and wake-up heating configuration"><figcaption><b>Wake-up heating</b> Per-day times, enable and idle set point.</figcaption></figure>
+        </div>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 3. STATUS & SUPERVISOR SCREENS -->
+      <section id="s3">
+        <div class="kicker"><span class="num">3</span> Status &amp; Supervisor Screens</div>
+        <h2>Monitoring &amp; Supervisor Functions</h2>
+        <p>Press <strong>System Status</strong> from the maintenance screen to view live system status and the running operation on a mimic of the tanks, valves, heater, ultrasonics and filtration pump.</p>
+        <figure class="screen"><img src="assets/screens/status-tanks.jpeg" alt="System status — tanks mimic"><figcaption><b>Status — tanks</b> Live mimic: fill valve, process &amp; weir tanks, lid sensors, heater, ultrasonic, degas and filtration pump.</figcaption></figure>
+
+        <h3>Counters</h3>
+        <p>From the status screen, <strong>Counters</strong> shows the cycle counters and lets the Supervisor reset the resettable ones:</p>
+        <ul>
+          <li><strong>Non-resettable</strong> — continuous auto-cycle counter.</li>
+          <li><strong>Resettable</strong> — reset with the <strong>RESET</strong> key.</li>
+          <li><strong>Heater hours of operation</strong> — resettable.</li>
+          <li><strong>Ultrasonic hours of operation</strong> — resettable.</li>
+          <li>Lid / heaters time-out (minutes): <strong>1 – 999</strong>.</li>
+        </ul>
+
+        <h3>Digital Inputs &amp; Outputs</h3>
+        <p><strong>Digital Inputs</strong> and <strong>Digital Outputs</strong> from the status screen show the live state of every PLC input and output — useful for fault-finding wiring and field devices.</p>
+        <div class="inline-2">
+          <figure class="screen"><img src="assets/screens/status-digital-input.jpeg" alt="Digital inputs status"><figcaption><b>Digital inputs</b> Live PLC input states.</figcaption></figure>
+          <figure class="screen"><img src="assets/screens/status-digital-output.jpeg" alt="Digital outputs status"><figcaption><b>Digital outputs</b> Live PLC output states.</figcaption></figure>
+        </div>
+
+        <h3>Generator Status &amp; Bypass</h3>
+        <p><strong>Generator Status</strong> lets the Supervisor monitor the ultrasonic generators and, if needed, set each of up to ten generators to <strong>In&nbsp;Use</strong> or <strong>Bypass</strong>.</p>
+        <figure class="screen"><img src="assets/screens/data-entry-common.jpeg" alt="Generator In Use / Bypass"><figcaption><b>Generator bypass</b> Set ultrasonic generators 1–10 to In&nbsp;Use or Bypass.</figcaption></figure>
+
+        <h3>Supervisor / System Menu</h3>
+        <p>Press the <strong>Supervisor</strong> key on the main screen to reach the system menu. From here:</p>
+        <ul>
+          <li><strong>Test</strong> — manually operate and check individual components (see below).</li>
+          <li><strong>Calibrate Screen</strong> — calibrate the touch-panel response.</li>
+          <li><strong>Clean Screen</strong> — lock the touch panel temporarily so it can be wiped down.</li>
+          <li><strong>Date &amp; Time Settings</strong> — set the MMI and PLC clock (requires the factory password).</li>
+          <li><strong>Brightness Settings</strong> — adjust the display brightness.</li>
+        </ul>
+        <div class="inline-2">
+          <figure class="screen"><img src="assets/screens/menu.jpeg" alt="System / supervisor menu"><figcaption><b>System menu</b> Test, date/time, brightness, calibrate and clean-screen.</figcaption></figure>
+          <figure class="screen"><img src="assets/screens/test-operations.jpeg" alt="Test operations screen"><figcaption><b>Test operations</b> Manually fire each component; set test power and temperature.</figcaption></figure>
+        </div>
+        <table class="spectable">
+          <caption>Test / manual-operation ranges</caption>
+          <thead><tr><th>Parameter</th><th>Range</th></tr></thead>
+          <tbody>
+            <tr><td>Ultrasonic power (%)</td><td>30 – 100</td></tr>
+            <tr><td>Test &amp; maintenance temperature (°C)</td><td>10 – 80</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 4. PROCESS OVERVIEW -->
+      <section id="s4">
+        <div class="kicker"><span class="num">4</span> Process Overview</div>
+        <h2>Running a Cleaning Cycle</h2>
+        <p>Before a process will run, the controller checks that the machine is in a safe and ready state. <strong>All of the following conditions must be met:</strong></p>
+        <ul>
+          <li>The <strong>process-tank level is high</strong> — the resonators and heaters must be covered, or they can be damaged.</li>
+          <li>All <strong>heater and pump feedbacks are ON</strong>.</li>
+          <li>The liquid temperature is <strong>not above the maximum set point</strong> and there is <strong>no RTD failure</strong>.</li>
+          <li>There is <strong>no surge-arrestor fault</strong>.</li>
+        </ul>
+
+        <h3>Starting &amp; Stopping a Cycle</h3>
+        <ol class="flow">
+          <li><b>Select a program</b> on the program-selection screen.</li>
+          <li>Press the physical <b>Start</b> switch — the selected program then begins.</li>
+          <li>Monitor the <b>selected program and process</b> on the main screen as it runs.</li>
+          <li>Press the <b>Stop</b> switch to pause. Press <b>Start</b> again to resume from where it stopped, or <b>hold Stop for 3&nbsp;seconds</b> to reset the process.</li>
+        </ol>
+        <div class="note warn"><span class="t">Never run the bath dry</span>The low-level interlock prevents the heaters and ultrasonics running uncovered, but the bath level should still be checked before every start-up and topped up as it evaporates during use.</div>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 5. TOWER LAMP -->
+      <section id="s5">
+        <div class="kicker"><span class="num">5</span> Machine Status</div>
+        <h2>Machine Status by Tower Lamp</h2>
+        <p>The machine's state is shown by a three-colour tower lamp — <strong>orange, green and red</strong> — used in different patterns. The buzzer can be muted from the alarm screen and auto-mutes after 15&nbsp;seconds.</p>
+
+        <h4>Red lamp &amp; buzzer</h4>
+        <div class="lamps">
+          <div class="lamp"><span class="led r blink"></span><div class="lt"><b>Blinking fast (1&nbsp;s) + buzzer</b>A fault / alarm is present in the machine.</div></div>
+          <div class="lamp"><span class="led r blink"></span><div class="lt"><b>Blinking slow (2&nbsp;s) + buzzer</b>A lid open / close operation is active.</div></div>
+          <div class="lamp"><span class="led r blink"></span><div class="lt"><b>Blinking (1&nbsp;s)</b>Machine is idle.</div></div>
+          <div class="lamp"><span class="led r blink"></span><div class="lt"><b>Blinking (2&nbsp;s)</b>Shutdown &amp; wake-up mode is active.</div></div>
+        </div>
+
+        <h4>Green lamp</h4>
+        <div class="lamps">
+          <div class="lamp"><span class="led g"></span><div class="lt"><b>On (steady)</b>Machine cycle is active and the process is running.</div></div>
+          <div class="lamp"><span class="led g blink"></span><div class="lt"><b>Blinking (1&nbsp;s)</b>System is ready to start a cycle.</div></div>
+          <div class="lamp"><span class="led g blink"></span><div class="lt"><b>Blinking (2&nbsp;s)</b>Wake-up heating selected &amp; active at full capacity; machine idle.</div></div>
+        </div>
+
+        <h4>Orange lamp</h4>
+        <div class="lamps">
+          <div class="lamp"><span class="led o"></span><div class="lt"><b>On (steady)</b>Machine cycle is paused.</div></div>
+          <div class="lamp"><span class="led o blink"></span><div class="lt"><b>Blinking (1&nbsp;s)</b>System not ready to start, but a program is selected.</div></div>
+          <div class="lamp"><span class="led o blink"></span><div class="lt"><b>Blinking (2&nbsp;s)</b>Maintenance / test operation in progress (manual test, fill, filter change, drain), or wake-up heating selected but deactivated while idle.</div></div>
+        </div>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 6. ALARMS -->
+      <section id="s6">
+        <div class="kicker"><span class="num">6</span> Alarms &amp; Troubleshooting</div>
+        <h2>Alarms — Cause &amp; Rectification</h2>
+        <p>Press the <strong>Alarms</strong> key on the main or user screen to open the alarms screen, where active alarms are listed. <strong>Buzzer Mute</strong> silences the buzzer; <strong>History</strong> shows the log of past alarms.</p>
+        <div class="inline-2">
+          <figure class="screen"><img src="assets/screens/alarms.jpeg" alt="Alarms screen"><figcaption><b>Alarms</b> Active alarm list with buzzer mute and history.</figcaption></figure>
+          <figure class="screen"><img src="assets/screens/alarms-history.jpeg" alt="Alarms history screen"><figcaption><b>Alarms history</b> Time-stamped log of triggered alarms.</figcaption></figure>
+        </div>
+        <div class="note danger"><span class="t">Clearing an alarm</span>To clear any active error you must press the <strong>fault-reset switch</strong> after rectifying the cause. The alarm will not clear until the underlying condition is fixed.</div>
+
+        <table class="alarms">
+          <thead><tr><th>Alarm</th><th>Cause &amp; rectification</th></tr></thead>
+          <tbody>
+            <tr><td>Emergency switch pressed</td><td>Raised when the emergency switch is pressed; no component or mode operates while it is in. Release the switch to clear. If it persists after release, check the switch wiring.</td></tr>
+            <tr><td>Lid multiple input on</td><td>Raised when more than one lid input is sensed at once. Check the lid sensor settings and the wiring of the lid inputs.</td></tr>
+            <tr><td>MPCB F/B — pump / motor tripped</td><td>Raised in all modes if a pump / motor MPCB is off or tripped. Switch all pump / motor MPCBs on; if it persists, check the feedback-signal wiring.</td></tr>
+            <tr><td>MCB F/B — heater tripped</td><td>Raised when a heater MCB is off or tripped. Switch all heater MCBs on; if it persists, check the feedback-signal wiring.</td></tr>
+            <tr><td>Temp. high / low — RTD</td><td>Raised if the tank RTD temperature goes above the maximum set point. Check the actual temperature and the set point (set it correctly to avoid nuisance alarms); if it persists, check the RTD and heater wiring.</td></tr>
+            <tr><td>Temp. high — thermostat</td><td>Raised if the tank thermostat detects high temperature. Check the actual temperature, RTD, heaters and set points; if it persists, check the thermostat wiring.</td></tr>
+            <tr><td>Heater contactor stuck</td><td>Raised if the heater output is on but the contactor is not (or off but the contactor is not). Check the heater contactor operation; if it persists, check the contactor and feedback wiring.</td></tr>
+            <tr><td>Process-tank liquid level low — heating disabled</td><td>Raised if the tank level falls below the level switch (heating is disabled). Refill the tank to the level switch to re-enable heating; if it persists, check the level-switch wiring.</td></tr>
+            <tr><td>Weir-tank liquid level low</td><td>Raised if the weir-tank level falls below the level switch. Refill to the level switch; if it persists, check the level-switch wiring.</td></tr>
+            <tr><td>Ultrasonic X healthy signal faulty (X = 1–10)</td><td>Raised if a generator's healthy signal is off. Check whether that ultrasonic generator is on; if it is and the fault persists, check the healthy-signal wiring.</td></tr>
+            <tr><td>Filter-change counter exceeded</td><td>Raised when the filter-change counter exceeds its set value. Press fault-reset to clear for one cycle; reset the counter on the maintenance screen to clear fully. Check / change the process-tank filter.</td></tr>
+            <tr><td>Drain counter exceeded</td><td>Raised when the drain counter exceeds its set value. Press fault-reset to clear for one cycle; reset the counter on the maintenance screen to clear fully.</td></tr>
+            <tr><td>Lid not closed</td><td>Raised if the process is running and the tank lid is not closed. Close the lid manually; if it is closed, check the lid-close sensor position and wiring.</td></tr>
+            <tr><td>Lid not opening / not closing</td><td>Raised if the lid does not open / close within a fixed time. Check the lid motor, sensors and MPCB; if it persists, check the lid-motor wiring.</td></tr>
+            <tr><td>Surge-arrestor fault</td><td>Raised if the surge-arrestor input is not on. Measure / monitor the system voltage or check the wiring.</td></tr>
+            <tr><td>Auto fill-up on / liquid not filled</td><td>Raised if the auto-fill valve is on but liquid is not filled within the set time. Set the fill time correctly; if it persists, check the fill valve, liquid flow and level switch.</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 7. MAINTENANCE & WARRANTY -->
+      <section id="s7">
+        <div class="kicker"><span class="num">7</span> Maintenance / Service / Warranty / Warning</div>
+        <h2>Maintenance &amp; Servicing</h2>
+        <p>The ultrasonic cleaner must always be kept clean and dry. Carry out all work with the machine isolated unless a live check is specifically required.</p>
+        <div class="note danger"><span class="t">Disconnect the mains plug first</span>Switch off and disconnect the mains supply before any maintenance. Never allow chemical solution to contact the control or electrical components.</div>
+
+        <h3>Routine Maintenance</h3>
+        <ul>
+          <li>Approximately every <strong>6&nbsp;months</strong>, check the cleaner and blow accumulated dust away with dry compressed air.</li>
+          <li>Make sure the generator cooling is always guaranteed — keep the cooling slots clear so air can circulate freely, and do not let warm air accumulate around the unit.</li>
+          <li>Avoid scratches in the radiating (resonator) surface — scratches increase erosion due to cavitation.</li>
+        </ul>
+
+        <h3>Service</h3>
+        <p>If the unit no longer functions properly, first check the plug and operating elements. <strong>Do not open the housing.</strong> Repairs may only be carried out by suitably trained staff — inexpert intervention can result in considerable danger to users and to the equipment.</p>
+
+        <h3>Warranty</h3>
+        <p>A one-year warranty is supplied by the manufacturer from the date of purchase, provided the equipment is operated in accordance with these operating instructions.</p>
+
+        <h3>Warning — Electrical Safety</h3>
+        <div class="note danger"><span class="t">Shock hazard</span>To avoid shock hazard when troubleshooting the system, always disconnect the power-supply line cord from the receptacle and disconnect the power-supply cable going to the control panel. Under certain conditions dangerous potentials may exist when the equipment is off, due to charge retained by capacitors. Always discharge capacitors to ground before troubleshooting or servicing the equipment.</div>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 8. MMI SCREEN REFERENCE -->
+      <section id="s8">
+        <div class="kicker"><span class="num">8</span> MMI Screen Reference</div>
+        <h2>Complete Touch-Panel Screen Map</h2>
+        <p>Every screen of the EVOSONIC&nbsp;1000 touch interface, for reference. See Sections&nbsp;1–3 for how to navigate between them.</p>
+
+        <div class="gallery">
+          <h4>Main &amp; login</h4>
+          <figure><img src="assets/screens/main.jpeg" alt="Main"><figcaption><b>Main</b> Power-on home screen.</figcaption></figure>
+          <figure><img src="assets/screens/home.jpeg" alt="Home / program select"><figcaption><b>Home</b> Program selection.</figcaption></figure>
+          <figure><img src="assets/screens/user.jpeg" alt="User login"><figcaption><b>Login</b> Enter password.</figcaption></figure>
+          <figure><img src="assets/screens/user-config.jpeg" alt="User configuration"><figcaption><b>User config</b> Supervisor: names &amp; passwords.</figcaption></figure>
+
+          <h4>Cleaning programs</h4>
+          <figure><img src="assets/screens/program-selected.jpeg" alt="Program selected"><figcaption><b>Program selected</b> Programs 1–4 (similar).</figcaption></figure>
+          <figure><img src="assets/screens/program-data-entry.jpeg" alt="Program data entry"><figcaption><b>Data entry</b> Program 1–4 (similar).</figcaption></figure>
+
+          <h4>Maintenance programs</h4>
+          <figure><img src="assets/screens/maintenance.jpeg" alt="Maintenance"><figcaption><b>Maintenance</b> Function menu.</figcaption></figure>
+          <figure><img src="assets/screens/dayend-selected.jpeg" alt="Day end maintenance selected"><figcaption><b>Day-end</b> Selected.</figcaption></figure>
+          <figure><img src="assets/screens/degas-selected.jpeg" alt="Degas selected"><figcaption><b>Degas</b> Selected.</figcaption></figure>
+          <figure><img src="assets/screens/filtration-selected.jpeg" alt="Filtration selected"><figcaption><b>Filtration</b> Selected.</figcaption></figure>
+          <figure><img src="assets/screens/dayend-data-entry.jpeg" alt="Day end data entry"><figcaption><b>Data entry</b> Day-end.</figcaption></figure>
+          <figure><img src="assets/screens/degas-data-entry.jpeg" alt="Degas data entry"><figcaption><b>Data entry</b> Degas.</figcaption></figure>
+          <figure><img src="assets/screens/filtration-data-entry.jpeg" alt="Filtration data entry"><figcaption><b>Data entry</b> Filtration.</figcaption></figure>
+          <figure><img src="assets/screens/fill-bath.jpeg" alt="Fill bath"><figcaption><b>Fill bath</b></figcaption></figure>
+          <figure><img src="assets/screens/change-filter.jpeg" alt="Change filter"><figcaption><b>Change filter</b> &amp; reset counter.</figcaption></figure>
+          <figure><img src="assets/screens/drain-bath.jpeg" alt="Drain bath"><figcaption><b>Drain bath</b> &amp; reset counter.</figcaption></figure>
+
+          <h4>Shutdown &amp; wake-up</h4>
+          <figure><img src="assets/screens/shutdown-wakeup.jpeg" alt="Shutdown and wake-up"><figcaption><b>Shutdown &amp; wake-up</b></figcaption></figure>
+          <figure><img src="assets/screens/shutdown-wakeup-on.jpeg" alt="Shutdown and wake-up on"><figcaption><b>Sleep active</b> Touch to wake.</figcaption></figure>
+          <figure><img src="assets/screens/shutdown-heating-config.jpeg" alt="Shutdown and wake-up heating config"><figcaption><b>Wake-up heating</b> Per-day config.</figcaption></figure>
+
+          <h4>Status &amp; counters</h4>
+          <figure><img src="assets/screens/status-tanks.jpeg" alt="Status tanks"><figcaption><b>Status — tanks</b> Live mimic.</figcaption></figure>
+          <figure><img src="assets/screens/cycle-counters.jpeg" alt="Cycle counters"><figcaption><b>Counters</b> Cycle &amp; hours counters.</figcaption></figure>
+          <figure><img src="assets/screens/status-digital-input.jpeg" alt="Digital input"><figcaption><b>Digital inputs</b></figcaption></figure>
+          <figure><img src="assets/screens/status-digital-output.jpeg" alt="Digital output"><figcaption><b>Digital outputs</b></figcaption></figure>
+          <figure><img src="assets/screens/data-entry-common.jpeg" alt="Generator bypass"><figcaption><b>Generator</b> In&nbsp;Use / Bypass.</figcaption></figure>
+
+          <h4>System &amp; settings</h4>
+          <figure><img src="assets/screens/menu.jpeg" alt="System menu"><figcaption><b>System menu</b> Supervisor screen.</figcaption></figure>
+          <figure><img src="assets/screens/test-operations.jpeg" alt="Test operations"><figcaption><b>Test</b> Manual component test.</figcaption></figure>
+          <figure><img src="assets/screens/data-entry-config.jpeg" alt="Data entry configuration"><figcaption><b>Config</b> Data entry.</figcaption></figure>
+          <figure><img src="assets/screens/date-time.jpeg" alt="Date and time"><figcaption><b>Date &amp; time</b> Factory password.</figcaption></figure>
+          <figure><img src="assets/screens/brightness.jpeg" alt="Brightness"><figcaption><b>Brightness</b></figcaption></figure>
+
+          <h4>Alarms</h4>
+          <figure><img src="assets/screens/alarms.jpeg" alt="Alarms"><figcaption><b>Alarms</b></figcaption></figure>
+          <figure><img src="assets/screens/alarms-history.jpeg" alt="Alarms history"><figcaption><b>Alarms history</b></figcaption></figure>
+        </div>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- 9. DIAGRAMS & DOWNLOADS -->
+      <section id="s9">
+        <div class="kicker"><span class="num">9</span> Diagrams &amp; Drawings</div>
+        <h2>Technical Drawings &amp; Lists (PDF Downloads)</h2>
+        <p>The machine's reference drawings and lists are provided here as separate PDFs. Click any item to open or save it.</p>
+
+        <!-- Drop PDFs into assets/diagrams/ and add a card below for each.
+             Card template:
+        <a class="dl-card" href="assets/diagrams/FILENAME.pdf" download>
+          <span class="pdf">PDF</span>
+          <span><span class="dl-t">DOCUMENT TITLE</span><span class="dl-m">SHORT DESCRIPTION · SIZE</span></span>
+          <span class="arrow">↓</span>
+        </a>
+        -->
+
+        <div class="dl-empty">
+          <b>Documents to be added.</b><br>
+          Supply the PDFs (electrical drawing, GA/mechanical drawing, I/O list, spares list, etc.) and they'll be listed here for download.
+        </div>
+      </section>
+
+      <div class="section-rule"></div>
+
+      <!-- 10. DOWNLOAD -->
+      <section id="s10" class="no-print">
+        <div class="kicker"><span class="num">10</span> Download</div>
+        <h2>Complete Manual (PDF)</h2>
+        <p>Download the entire manual — every section plus the screen reference — as a single, print-ready PDF. (Until the PDF is generated you can use your browser's <strong>Print → Save as PDF</strong> on this page.)</p>
+        <div class="dl-empty">
+          <b>Full-manual PDF to be added.</b><br>
+          A print-ready <code>EVOSONIC-1000-Manual.pdf</code> will be linked here.
+        </div>
+      </section>
+
+    </div><!-- /wrap -->
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap">
+        <div>
+          <div class="mark">KLEENTEK<span style="color:var(--amber)">.</span></div>
+          <div class="addr" style="margin-top:14px">
+            <b>Kleentek Australia</b><br>
+            Industrial ultrasonic &amp; chemical cleaning systems<br>
+            47 Foley Road, Hemmant, QLD 4174<br>
+            <b>1300 79 73 79</b> · <a href="mailto:info@kleentek.com.au">info@kleentek.com.au</a>
+          </div>
+        </div>
+        <div class="addr">
+          <b>About this manual</b><br>
+          Operating Instructions &amp; Service Manual for the EVOSONIC&nbsp;1000 (EVS1000) ultrasonic cleaning system. Supplied and supported by Kleentek&nbsp;Australia.
+          <div class="small">All rights reserved in respect of changes of design and technical data. Specifications may be modified without notice.</div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+// Active-link highlighting in the sidebar
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.nav a'));
+  var map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1);var s=document.getElementById(id);if(s)map[id]=a;});
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.remove('active');});
+        var a=map[e.target.id]; if(a)a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-10% 0px -80% 0px'});
+  Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+})();
+</script>
+</body>
+</html>
