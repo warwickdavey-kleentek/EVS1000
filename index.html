@@ -455,7 +455,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
         <p>See <strong>Section&nbsp;3 — System Operation</strong> for how to select, edit and start programs, and <strong>Section&nbsp;6 — Process Overview</strong> for the conditions that must be met before a cycle will run.</p>
 
         <h3>Filtration &amp; Bath Management</h3>
-        <p>Solution overflows the process tank into a <strong>pocket (weir) tank</strong>, from which the filtration pump draws it through dual stainless bag-filter housings — a coarse and a fine cloth bag (<strong>50&nbsp;micron</strong> and <strong>25&nbsp;micron</strong>) — before returning it, clean, to the process tank. Removing particulate continuously keeps the bath clear, protects the finish on cleaned parts and extends solution life. The filter-housing pressure gauge shows when the bags are loading up and due for replacement, and the controller tracks a filter-change counter (Section&nbsp;4).</p>
+        <p>Solution overflows the process tank into a <strong>pocket (weir) tank</strong>, from which the filtration pump draws it through dual stainless bag-filter housings — a coarse and a fine cloth bag (<strong>100&nbsp;micron</strong> and <strong>50&nbsp;micron</strong>) — before returning it, clean, to the process tank. Removing particulate continuously keeps the bath clear, protects the finish on cleaned parts and extends solution life. The filter-housing pressure gauge shows when the bags are loading up and due for replacement, and the controller tracks a filter-change counter (Section&nbsp;4).</p>
 
         <h3>Heating &amp; Temperature Control</h3>
         <p>Electric screw-in water heaters, each with its own controller and over-temperature limiter, bring the bath to temperature. A PT100 RTD sensor feeds the controller (through a signal isolator) for closed-loop control to the HMI set point, and an independent thermostat provides a second layer of over-temperature protection.</p>
@@ -481,7 +481,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
             <tr><td>Ultrasonic generators</td><td>Advanced Cleaning Generator (ACG) type — control supports up to 10</td></tr>
             <tr><td>Level switches</td><td>2 × Endress+Hauser FTL31 (process &amp; weir tanks)</td></tr>
             <tr><td>Filter housings</td><td>2 × SS&nbsp;304 bag-filter housing, Ø7&Prime;, 16&Prime; long, 2&Prime; connection, Viton seal</td></tr>
-            <tr><td>Filters</td><td>Cloth bag — 50 micron &amp; 25 micron</td></tr>
+            <tr><td>Filters</td><td>Cloth bag — 100 micron &amp; 50 micron</td></tr>
             <tr><td>Filtration pump</td><td>Grundfos CM5-2-A-R-A-V AVBV · 0.84&nbsp;kW · 5&nbsp;m³/h · 14.7&nbsp;m head</td></tr>
             <tr><td>Heaters</td><td>Electric screw-in, with controller &amp; temperature limiter (JEKA)</td></tr>
             <tr><td>Temperature sensor</td><td>RTD PT100, 200&nbsp;mm (Radix), via PT100→0–10&nbsp;V isolator (0–100&nbsp;°C)</td></tr>
@@ -942,7 +942,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
         </ul>
 
         <h3>Changing the Filter Bags</h3>
-        <p>The solution is filtered through two stainless bag-filter housings — a coarse <strong>50&nbsp;micron</strong> bag followed by a fine <strong>25&nbsp;micron</strong> bag. The bags are consumable items and must be replaced when they load up with soil. The on-screen <strong>Change Filter</strong> function and its counter (Section&nbsp;4) help you track and carry out the change.</p>
+        <p>The solution is filtered through two stainless bag-filter housings — a coarse <strong>100&nbsp;micron</strong> bag followed by a fine <strong>50&nbsp;micron</strong> bag. The bags are consumable items and must be replaced when they load up with soil. The on-screen <strong>Change Filter</strong> function and its counter (Section&nbsp;4) help you track and carry out the change.</p>
         <div class="note warn"><span class="t">When to change the bags</span>Replace the bags when the filter-housing pressure gauge climbs into its upper (red) zone, when the <strong>Filter-Change Counter Exceeded</strong> alarm appears, or when bath clarity and flow fall away. Clogged bags starve the circulation pump and let particulate recirculate onto cleaned parts.</div>
         <div class="note danger"><span class="t">Before opening a housing</span>The solution may be hot and chemically active. Wear suitable gloves and eye protection, and where practical let the bath cool first. Isolate the machine before any electrical work, and never let solution reach the control or electrical components.</div>
         <ol class="flow">
@@ -950,7 +950,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
           <li>Close the inlet and outlet ball valves isolating the filter housings, then slowly relieve the pressure and drain each housing back to the tank.</li>
           <li>Undo the housing lid (clamp / swing bolts), lift out the bag-restrainer basket and remove the used bag, letting it drain into the housing.</li>
           <li>Clean the inside of the housing and the sealing face. Inspect the <b>Viton gasket / seal</b> and replace it if it is damaged or perished.</li>
-          <li>Fit a new bag of the correct rating in each housing — <b>coarse 50&nbsp;micron</b> and <b>fine 25&nbsp;micron</b> — seating it fully over the housing neck so that unfiltered solution cannot bypass it. Refit the restrainer basket.</li>
+          <li>Fit a new bag of the correct rating in each housing — <b>coarse 100&nbsp;micron</b> and <b>fine 50&nbsp;micron</b> — seating it fully over the housing neck so that unfiltered solution cannot bypass it. Refit the restrainer basket.</li>
           <li>Close the lid evenly with the seal correctly located, then reopen the inlet and outlet ball valves.</li>
           <li>Exit filter-change mode and restart filtration. Check the housings and connections for leaks and confirm the pressure gauge returns to its normal (green) zone.</li>
           <li>Press <b>Reset</b> on the Change Filter screen to zero the filter-change counter.</li>
