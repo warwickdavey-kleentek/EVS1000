@@ -268,6 +268,26 @@ footer a{color:#7fb0e6}
 .gallery h4{grid-column:1/-1;margin:18px 0 0}
 @media(max-width:680px){.gallery{grid-template-columns:1fr}}
 
+/* ---------- Quick Start ---------- */
+.qs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0 0}
+.qs-card{border:1px solid var(--line);border-radius:12px;background:var(--white);box-shadow:var(--shadow);overflow:hidden}
+.qs-card.wide{grid-column:1/-1}
+.qs-card h4{margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--blue);padding:9px 14px}
+.qs-card.amber h4{background:var(--amber)}
+.qs-card.green h4{background:var(--green)}
+.qs-card.deep h4{background:var(--blue-deep)}
+.qs-card.red h4{background:var(--red)}
+.qs-card .qs-body{padding:11px 15px 13px;font-size:13.5px;line-height:1.5}
+.qs-card .qs-body ol,.qs-card .qs-body ul{margin:0;padding-left:18px}
+.qs-card .qs-body li{margin:3px 0}
+.qs-card .qs-body p{margin:0}
+.qs-card .qs-body b{color:var(--blue-deep)}
+.qs-lamp{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:middle;box-shadow:inset 0 0 3px rgba(0,0,0,.3)}
+.qs-lamp.r{background:var(--red)}.qs-lamp.o{background:var(--amber)}.qs-lamp.g{background:var(--green)}
+@media(max-width:680px){.qs-grid{grid-template-columns:1fr}}
+@media print{ #quickstart{break-before:page;break-after:page} .qs-grid{gap:9px} .qs-card{break-inside:avoid} }
+
 /* ---------- Flow diagram ---------- */
 figure.flowdiagram{background:var(--white);padding:18px 18px 6px}
 figure.flowdiagram svg{width:100%;height:auto;display:block}
@@ -340,6 +360,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
   <button onclick="document.getElementById('mnav').classList.toggle('open')">Contents ▾</button>
 </div>
 <nav id="mnav">
+  <a href="#quickstart">⚡ Quick Start</a>
   <a href="#s1">1 · System Overview</a>
   <a href="#s2">2 · Preparation for Use</a>
   <a href="#s3">3 · System Operation</a>
@@ -364,6 +385,7 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
     </div>
     <div class="group">EVOSONIC 1000 (EVS 950) — Manual</div>
     <ol>
+      <li><a href="#quickstart">⚡ Quick Start</a></li>
       <li><a href="#s1">1 · System Overview</a></li>
       <li><a href="#s2">2 · Preparation for Use</a></li>
       <li><a href="#s3">3 · System Operation (MMI)</a></li>
@@ -414,6 +436,102 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
           <a class="toc-card" href="#s8"><span class="tc-n">SECTION 8</span><div class="tc-t">Alarms &amp; Troubleshooting</div><div class="tc-d">Every alarm message the system can raise, its cause and how to rectify it.</div></a>
         </div>
         <div class="note info"><span class="t">Proprietary notice</span>The contents of this manual are proprietary information. No part may be transmitted, written or verbal, to any third party, or copied in any way, without the prior written consent of Kleentek&nbsp;Australia. All rights are reserved in respect of changes of design and technical data.</div>
+      </section>
+      <div class="section-rule"></div>
+
+      <!-- QUICK START -->
+      <section id="quickstart">
+        <div class="kicker"><span class="num">⚡</span> Quick Start</div>
+        <h2>Quick Start Guide</h2>
+        <p>At-a-glance operation for trained operators. This is a summary only — read Sections&nbsp;1–9 for full detail, safety information and troubleshooting before operating the machine.</p>
+        <div class="qs-grid">
+
+          <div class="qs-card amber">
+            <h4>1 · Start of Day</h4>
+            <div class="qs-body">
+              <ol>
+                <li>Check the <b>bath level</b> — top up if low (Fill Bath, Section&nbsp;4).</li>
+                <li>Switch on at the isolator and <b>log in</b> at your level.</li>
+                <li>Set the <b>temperature</b> (25–75&nbsp;°C) and let the bath heat.</li>
+                <li>If the solution is fresh or topped up, run <b>Degas</b> with no load.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="qs-card">
+            <h4>2 · Run a Cleaning Cycle</h4>
+            <div class="qs-body">
+              <ol>
+                <li><b>Load</b> the basket and <b>close the lid</b>.</li>
+                <li><b>Select</b> a program (1–4) on the Home screen.</li>
+                <li>Press the <b>Start</b> switch.</li>
+                <li><b>Monitor</b> the cycle on the main screen.</li>
+                <li>At the end, <b>raise &amp; drain</b> the basket, then unload.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="qs-card deep">
+            <h4>3 · Pause / Stop / Reset</h4>
+            <div class="qs-body">
+              <ul>
+                <li><b>Stop</b> switch — pauses the cycle.</li>
+                <li><b>Start</b> again — resumes from where it stopped.</li>
+                <li><b>Hold Stop 3&nbsp;s</b> — resets the process.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="qs-card deep">
+            <h4>Won't Start? Check</h4>
+            <div class="qs-body">
+              <ul>
+                <li>Process-tank <b>level high</b></li>
+                <li>Pump &amp; heater <b>feedbacks ON</b></li>
+                <li>Temp ≤ set point · <b>RTD healthy</b></li>
+                <li><b>No</b> surge-arrestor fault</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="qs-card green">
+            <h4>Tower-Lamp Status</h4>
+            <div class="qs-body">
+              <p><span class="qs-lamp g"></span><b>Green</b> — running, or ready to start (blinking).</p>
+              <p><span class="qs-lamp o"></span><b>Orange</b> — paused, or maintenance / test in progress.</p>
+              <p><span class="qs-lamp r"></span><b>Red + buzzer</b> — fault / alarm, or lid moving. <span style="color:var(--steel)">Full legend: Section&nbsp;7.</span></p>
+            </div>
+          </div>
+
+          <div class="qs-card red">
+            <h4>If an Alarm Appears</h4>
+            <div class="qs-body">
+              <ol>
+                <li>Note the message on the <b>Alarms</b> screen (mute the buzzer there).</li>
+                <li><b>Rectify the cause</b> — see the alarm table in Section&nbsp;8.</li>
+                <li>Press the <b>Fault Reset</b> switch to clear it.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="qs-card red wide">
+            <h4>Safety Essentials</h4>
+            <div class="qs-body">
+              <ul>
+                <li><b>Never run the bath dry</b> — heaters and resonators must always be covered by liquid.</li>
+                <li>The <b>lid must be closed</b> for a cycle to run; keep clear of the powered lid as it moves.</li>
+                <li><b>Isolate the power</b> before any service or before opening a panel or filter housing.</li>
+                <li><b>No acids, halogens or flammables</b> in the bath — they damage the machine and create hazards.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <p style="margin-top:18px"><a class="dl-card" href="EVOSONIC-1000-EVS950-Quick-Start.pdf" download style="max-width:420px">
+          <span class="pdf">PDF</span>
+          <span><span class="dl-t">Quick Start Guide</span><span class="dl-m">Single page · print &amp; laminate for the machine</span></span>
+          <span class="arrow">↓</span>
+        </a></p>
       </section>
       <div class="section-rule"></div>
 
@@ -1058,13 +1176,20 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
       <!-- 10. DOWNLOAD -->
       <section id="s12" class="no-print">
         <div class="kicker"><span class="num">12</span> Download</div>
-        <h2>Complete Manual (PDF)</h2>
-        <p>Download the entire manual — every section plus the technical drawings and the full screen reference — as a single, print-ready A4 PDF.</p>
-        <a class="dl-card" href="EVOSONIC-1000-EVS950-Manual.pdf" download>
-          <span class="pdf">PDF</span>
-          <span><span class="dl-t">EVOSONIC 1000 (EVS 950) Operating &amp; Service Manual</span><span class="dl-m">Full manual · A4 · ~6 MB</span></span>
-          <span class="arrow">↓</span>
-        </a>
+        <h2>Manuals (PDF)</h2>
+        <p>Download the entire manual as a single, print-ready A4 PDF, or the one-page Quick Start guide to print and laminate at the machine.</p>
+        <div class="dl-grid">
+          <a class="dl-card" href="EVOSONIC-1000-EVS950-Manual.pdf" download>
+            <span class="pdf">PDF</span>
+            <span><span class="dl-t">Operating &amp; Service Manual</span><span class="dl-m">Full manual · A4 · ~6 MB</span></span>
+            <span class="arrow">↓</span>
+          </a>
+          <a class="dl-card" href="EVOSONIC-1000-EVS950-Quick-Start.pdf" download>
+            <span class="pdf">PDF</span>
+            <span><span class="dl-t">Quick Start Guide</span><span class="dl-m">Single page · A4 · ~340 KB</span></span>
+            <span class="arrow">↓</span>
+          </a>
+        </div>
       </section>
 
     </div><!-- /wrap -->
