@@ -276,6 +276,20 @@ footer a{color:#7fb0e6}
 .gallery h4{grid-column:1/-1;margin:18px 0 0}
 @media(max-width:680px){.gallery{grid-template-columns:1fr}}
 
+/* ---------- Permissions table ---------- */
+.permtable{width:100%;border-collapse:collapse;margin:14px 0 8px;font-size:14px;
+  background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.permtable th{background:var(--blue-deep);color:#dce9f7;font-size:11.5px;letter-spacing:.06em;
+  text-transform:uppercase;font-weight:600;padding:11px 14px;text-align:left}
+.permtable th.c,.permtable td.c{text-align:center;width:118px}
+.permtable td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top;text-align:left}
+.permtable tr:last-child td{border-bottom:none}
+.permtable tbody tr:nth-child(even){background:#fafbfd}
+.permtable .grp td{background:var(--paper);font-weight:700;color:var(--blue-deep);font-size:11.5px;
+  letter-spacing:.05em;text-transform:uppercase}
+.permtable .yes{color:var(--green);font-weight:800}
+.permtable .no{color:#bcc7d3;font-weight:700}
+
 /* ---------- Quick Start ---------- */
 .qs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0 0}
 .qs-card{border:1px solid var(--line);border-radius:12px;background:var(--white);box-shadow:var(--shadow);overflow:hidden}
@@ -705,6 +719,32 @@ figure.screen img{width:auto;max-width:100%;max-height:360px;margin:0 auto;backg
           </tbody>
         </table>
         <div class="note info"><span class="t">Passwords are issued by Kleentek</span>For security, login passwords are not printed in this manual. The factory passwords for each level are available to the <strong>authorised supervisor</strong> from Kleentek&nbsp;Australia. The Supervisor can then rename users and change passwords from the user-configuration screen (press the tab/key from the login screen) — change them after commissioning so that program and supervisor functions are protected.</div>
+
+        <h3>What Each Level Can Do</h3>
+        <p>Any logged-in operator can run the machine; <strong>configuration and set-up are restricted to the Supervisor</strong> (the machine's administrator level). The table below summarises the difference.</p>
+        <table class="permtable">
+          <thead><tr><th>Capability</th><th class="c">User</th><th class="c">Supervisor</th></tr></thead>
+          <tbody>
+            <tr class="grp"><td colspan="3">Operate the machine</td></tr>
+            <tr><td>Log in at the required security level</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+            <tr><td>Select a cleaning program (1–4)</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+            <tr><td>Start, pause, stop &amp; reset a cycle</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+            <tr><td>Run fill, drain, filtration &amp; degas functions</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+            <tr><td>Monitor status, the tank mimic &amp; digital I/O</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+            <tr><td>View alarms, mute the buzzer &amp; fault-reset</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+            <tr><td>Adjust brightness, calibrate &amp; clean the screen</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+            <tr class="grp"><td colspan="3">Configure &amp; set up — Supervisor only</td></tr>
+            <tr><td>Edit cleaning-program data (temperature, times, power, lid)</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+            <tr><td>Edit maintenance-program data (day-end / degas / filtration times)</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+            <tr><td>Set &amp; reset the filter-change and drain counters</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+            <tr><td>Configure shutdown &amp; wake-up heating (days, times, temperature)</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+            <tr><td>Set the lid / heaters time-out</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+            <tr><td>Bypass ultrasonic generators (In&nbsp;Use / Bypass)</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+            <tr><td>Set test / manual-operation values (US power, test temperature)</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+            <tr><td>Rename users &amp; change passwords</td><td class="c no">—</td><td class="c yes">✓</td></tr>
+          </tbody>
+        </table>
+        <div class="note info"><span class="t">Above Supervisor</span>Setting the system <strong>date &amp; time</strong> requires a separate <strong>factory password</strong> (held above Supervisor level). Menus above a user's logged-in level are disabled until the correct level is entered.</div>
 
         <h3>Selecting a Program</h3>
         <p>From the main screen press the <strong>Home</strong> key to open the program-selection screen. Tap the required <strong>program number</strong> (1–4) to select it; a "program selected" message confirms the choice, and the program cycle, lid and RTD-selection status can be monitored from this screen.</p>
