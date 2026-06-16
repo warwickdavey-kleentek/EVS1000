@@ -99,23 +99,31 @@ img{max-width:100%;display:block}
 }
 
 /* ---------- Sections ---------- */
-section{padding:54px 0 8px;scroll-margin-top:20px}
+section{padding:62px 0 10px;scroll-margin-top:20px}
 .kicker{
-  display:inline-flex;align-items:center;gap:9px;font-family:'Spline Sans Mono',monospace;
-  font-size:12px;letter-spacing:.12em;color:var(--blue);font-weight:500;
-  text-transform:uppercase;margin-bottom:12px;
+  display:inline-flex;align-items:center;gap:10px;font-family:'Spline Sans Mono',monospace;
+  font-size:12.5px;letter-spacing:.12em;color:var(--blue);font-weight:600;
+  text-transform:uppercase;margin-bottom:14px;
 }
 .kicker .num{
-  background:var(--blue);color:#fff;width:26px;height:26px;border-radius:7px;
-  display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:12.5px;
+  background:var(--blue);color:#fff;width:30px;height:30px;border-radius:8px;
+  display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
+  box-shadow:0 2px 6px rgba(11,79,158,.28);
 }
 h2{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(24px,3vw,33px);
-  line-height:1.12;margin:0 0 14px;letter-spacing:-.01em}
+  line-height:1.12;margin:0 0 16px;letter-spacing:-.01em;padding-bottom:14px;
+  border-bottom:1px solid var(--line-soft)}
 h3{font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;margin:34px 0 10px;color:var(--blue-deep)}
 h4{font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;letter-spacing:.04em;
   text-transform:uppercase;color:var(--steel);margin:26px 0 8px}
 p{margin:0 0 16px}
-.section-rule{height:1px;background:var(--line);margin:8px 0 0}
+/* Justified body copy (reading prose + section lists) */
+.main section p,.main section li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+/* Keep compact components left-aligned for readability */
+.qs-card .qs-body p,.qs-card .qs-body li,.stage p,.toc-card .tc-d{text-align:left;-webkit-hyphens:manual;hyphens:manual}
+/* Definitive divider between sections — branded blue tab + full rule */
+.section-rule{height:0;border:0;border-top:2px solid #c5d2df;margin:46px 0 0;position:relative}
+.section-rule::before{content:"";position:absolute;top:-2px;left:0;width:68px;height:2px;background:var(--blue)}
 ul,ol.list{margin:0 0 16px;padding-left:22px}
 li{margin:5px 0}
 strong{font-weight:600;color:var(--blue-deep)}
